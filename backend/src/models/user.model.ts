@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {scannedPlantSchema } from "./scannedplants.model.js";
+import {scannedPlantSchema } from "./scannedplant.model.js";
 import postSchema from "./schemas/post.schema.js";
 import messageSchema from "./schemas/message.schema.js";
 import contactSchema from "./schemas/contact.schema.js";
