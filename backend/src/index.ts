@@ -1,17 +1,20 @@
-import express, { Express, Request, Response, NextFunction } from "express";
+import express, { Application } from "express";
 import 'dotenv/config';
+import mongoDBConn from "./config/connection.js";
+import cors from 'cors';
+import options from "./config/cors.js";
 
 const PORT : String|Number = process.env.PORT || 8000;
 
-const app : Express = express();
+const app : Application = express();
 
-app.get('/', (req:Request, res:Response)=>{
-    return res.json({
-        message: "testing",
-    });
-});
+app.use(cors(options));
+
+app.use(express.json());
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
     console.log(`http://localhost:${PORT}`);
 });
+
+mongoDBConn();
