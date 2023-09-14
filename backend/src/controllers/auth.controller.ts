@@ -9,6 +9,15 @@ import { decodeThenSendToS3 } from '../utils/image.handler.js';
 const jwt : typeof jsonwebtoken = jsonwebtoken;
 
 export const login = async (req: Request, res: Response) => {
+
+    //validation errors
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({
+            errors: errors.array()
+        });
+    }
+
     const {email, password} = req.body;
 
     //check if user exists
