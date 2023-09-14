@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import {login,register} from '../controllers/auth.controller.js';
+import {login,logout,register} from '../controllers/auth.controller.js';
 import {isAuthorized} from '../middlewares/auth.middleware.js';
 import upload from "../config/multer.js";
 import { check } from "express-validator";
@@ -20,4 +20,6 @@ router.post("/register", [
     check('base64Image').notEmpty().withMessage("base64 image is missing")
 ], register);
 
+
+router.get('/logout', isAuthorized, logout);
 export default router;
