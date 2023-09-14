@@ -7,7 +7,7 @@ export interface AuthRequest extends Request {
     user?: JwtPayload;
 }
 
-export const blackList: string[] = []; 
+const blackList: string[] = []; 
 
 export const isAuthorized = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(" ")[1];

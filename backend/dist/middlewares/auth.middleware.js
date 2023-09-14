@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import jsonwebtoken from 'jsonwebtoken';
 const jwt = jsonwebtoken;
-export const blackList = [];
+const blackList = [];
 export const isAuthorized = async (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
     //verify the token
