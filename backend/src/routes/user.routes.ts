@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {login,logout,register} from '../controllers/auth.controller.js';
-import { addScanned } from "../controllers/user.controller.js";
+import { addScanned, addPost } from "../controllers/user.controller.js";
 import {isAuthorized} from '../middlewares/auth.middleware.js';
 import {check} from "express-validator";
 let router : Router = Router();
@@ -28,4 +28,9 @@ router.post('/scanned/add', [
     check('description').notEmpty().withMessage("description must not be empty"),
     check('base64Image').notEmpty().withMessage("base64 image is missing"),
 ], isAuthorized, addScanned);
+
+
+router.post('/posts/add', [
+    check('content').notEmpty().withMessage("content must not be empty"),
+], isAuthorized, addPost);
 export default router;
