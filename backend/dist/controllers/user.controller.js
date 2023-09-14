@@ -38,4 +38,29 @@ export const addScanned = async (req, res) => {
         });
     }
 };
+export const addPost = async (req, res) => {
+    //validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({
+            errors: errors.array()
+        });
+    }
+    const _id = req.user._id;
+    const { content } = req.body;
+    const post = {
+        content: content,
+    };
+    try {
+        const updatedUser = await User.findByIdAndUpdate(_id, {
+            $push: {
+                posts: post
+            }
+        }, { new: true });
+        console.log(updatedUser);
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
 //# sourceMappingURL=user.controller.js.map
