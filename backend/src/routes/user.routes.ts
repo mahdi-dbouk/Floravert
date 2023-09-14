@@ -5,7 +5,10 @@ import upload from "../config/multer.js";
 import { check } from "express-validator";
 let router : Router = Router();
 
-router.post("/login", login);
+router.post("/login", [
+    check('email').isEmail().withMessage("Incorrectly formatted email"),
+    check('password').isLength({min: 6}).withMessage("password should be at least 6 characters long"),
+], login);
 
 router.post("/register", [
     check('firstName').notEmpty().withMessage("first name must not be empty"),
