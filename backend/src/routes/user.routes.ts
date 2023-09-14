@@ -1,8 +1,7 @@
-import { Router, Request, Response } from "express";
+import {Router} from "express";
 import {login,logout,register} from '../controllers/auth.controller.js';
 import {isAuthorized} from '../middlewares/auth.middleware.js';
-import upload from "../config/multer.js";
-import { check } from "express-validator";
+import {check} from "express-validator";
 let router : Router = Router();
 
 router.post("/login", [
@@ -19,7 +18,6 @@ router.post("/register", [
     check('age').isInt({min: 18}).withMessage("age must be over 18"),
     check('base64Image').notEmpty().withMessage("base64 image is missing")
 ], register);
-
 
 router.get('/logout', isAuthorized, logout);
 export default router;
