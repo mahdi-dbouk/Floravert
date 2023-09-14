@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { login, logout, register } from '../controllers/auth.controller.js';
+import { addScanned } from "../controllers/user.controller.js";
 import { isAuthorized } from '../middlewares/auth.middleware.js';
 import { check } from "express-validator";
 let router = Router();
@@ -17,5 +18,11 @@ router.post("/register", [
     check('base64Image').notEmpty().withMessage("base64 image is missing")
 ], register);
 router.get('/logout', isAuthorized, logout);
+router.post('/scanned/add', [
+    check('commonName').notEmpty().withMessage("common name must not be empty"),
+    check('botanicalName').notEmpty().withMessage("botanical name must not be empty"),
+    check('description').notEmpty().withMessage("description must not be empty"),
+    check('base64Image').notEmpty().withMessage("base64 image is missing"),
+], isAuthorized, addScanned);
 export default router;
 //# sourceMappingURL=user.routes.js.map
