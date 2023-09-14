@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 import { decodeThenSendToS3 } from '../utils/image.handler.js';
+import { revokeToken } from '../middlewares/auth.middleware.js';
 const jwt = jsonwebtoken;
 export const login = async (req, res) => {
     //validation errors
@@ -99,5 +100,17 @@ export const register = async (req, res) => {
             error: error
         });
     }
+};
+export const logout = (req, res) => {
+    const { token } = req.body;
+    const isRevoked = revokeToken(token);
+    if (!isRevoked) {
+        return res.status(500).json({
+            error: "Can't log out"
+        });
+    }
+    return res.status(200).json({
+        message: "logged out successfully"
+    });
 };
 //# sourceMappingURL=auth.controller.js.map

@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jsonwebtoken, { Secret } from 'jsonwebtoken';
 import {validationResult} from 'express-validator';
 import { decodeThenSendToS3 } from '../utils/image.handler.js';
+import { AuthRequest, revokeToken } from '../middlewares/auth.middleware.js';
 
 const jwt : typeof jsonwebtoken = jsonwebtoken;
 
@@ -113,4 +114,19 @@ export const register = async (req: Request, res: Response) => {
             error: error
         });
     }
+}
+
+export const logout = (req: AuthRequest, res: Response) => {
+    const {token} = req.body;
+    const isRevoked = revokeToken(token);
+
+    if(!isRevoked){
+        return res.status(500).json({
+            error: "Can't log out"
+        });
+    }
+
+    return res.status(200).json({
+        message: "logged out successfully"
+    });
 }
