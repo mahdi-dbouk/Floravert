@@ -4,6 +4,7 @@ import mongoDBConn from "./config/connection.js";
 import cors from 'cors';
 import options from "./config/cors.js";
 import userRoutes from './routes/user.routes.js';
+import postRoutes from './routes/post.routes.js';
 
 const PORT : String|Number = process.env.PORT || 8000;
 
@@ -21,3 +22,4 @@ app.listen(PORT, () => {
 mongoDBConn();
 
 app.use('/user',userRoutes);
+app.use('/posts', postRoutes);
