@@ -13,4 +13,18 @@ export const getAllPosts = async (req, res) => {
         });
     }
 };
+export const addLike = async (req, res) => {
+    const { postId, userId } = req.body;
+    try {
+        const user = await User.findOneAndUpdate({ _id: userId, 'posts._id': postId }, { $inc: { 'posts.$.likes': 1 } }, { new: true });
+        return res.status(200).json({
+            message: "like added"
+        });
+    }
+    catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+    }
+};
 //# sourceMappingURL=post.controller.js.map
