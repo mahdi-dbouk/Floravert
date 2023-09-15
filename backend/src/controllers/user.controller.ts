@@ -88,3 +88,40 @@ export const addPost = async (req: AuthRequest, res: Response) => {
         console.log(error);
     }
 }
+
+export const follow = async (req: AuthRequest, res: Response) => {
+    const {userId} = req.body;
+    const _id = req.user._id;
+
+    try {
+
+        const user = await User.findOne({_id});
+        if(user.followed.includes(userId)){
+            return res.status(400).json({
+                message: "User is already followed"
+            });
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+            {_id},
+            {$push: {followed: userId}},
+            {new: true}
+        );
+
+        const followedUser = await User.findOneAndUpdate(
+            {_id: userId},
+            {$push: {followers: _id}},
+            {new: true}
+        );
+
+        if(updatedUser && followedUser){
+            return res.status(200).json({
+                message: "followed"
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+    }
+}
