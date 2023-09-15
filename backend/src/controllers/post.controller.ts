@@ -1,8 +1,6 @@
 import {Request, Response} from 'express';
 import User from '../models/user.model.js';
-import mongoose from 'mongoose';
 import { AuthRequest } from '../middlewares/auth.middleware.js';
-import { isArrayBuffer } from 'util/types';
 
 export const getAllPosts = async (req: Request, res: Response) => {
     const users = await User.find({}, 'posts');
