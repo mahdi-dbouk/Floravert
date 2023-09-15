@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {login,logout,register} from '../controllers/auth.controller.js';
-import { addScanned, addPost } from "../controllers/user.controller.js";
+import { addScanned, addPost, follow } from "../controllers/user.controller.js";
 import {isAuthorized} from '../middlewares/auth.middleware.js';
 import {check} from "express-validator";
 let router : Router = Router();
@@ -33,4 +33,7 @@ router.post('/scanned/add', [
 router.post('/posts/add', [
     check('content').notEmpty().withMessage("content must not be empty"),
 ], isAuthorized, addPost);
+
+router.post('/follow', isAuthorized, follow);
+
 export default router;
