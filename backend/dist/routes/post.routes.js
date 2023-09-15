@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllPosts } from "../controllers/post.controller.js";
+import { addLike, getAllPosts } from "../controllers/post.controller.js";
 import { isAuthorized } from "../middlewares/auth.middleware.js";
 let router = Router();
 router.get("/", (req, res) => {
@@ -9,5 +9,6 @@ router.get("/", (req, res) => {
     });
 });
 router.get("/all", isAuthorized, getAllPosts);
+router.post("/like", isAuthorized, addLike);
 export default router;
 //# sourceMappingURL=post.routes.js.map
