@@ -1,6 +1,8 @@
 import {Request, Response} from 'express';
 import User from '../models/user.model.js';
 import mongoose from 'mongoose';
+import { AuthRequest } from '../middlewares/auth.middleware.js';
+import { isArrayBuffer } from 'util/types';
 
 export const getAllPosts = async (req: Request, res: Response) => {
     const users = await User.find({}, 'posts');
@@ -37,3 +39,59 @@ export const addLike = async (req: Request, res: Response) => {
         
     }
 }
+
+export const addComment = async (req: AuthRequest, res: Response) => {
+    const {postId, userId, content} = req.body;
+
+    try {
+        const user = await User.findOneAndUpdate(
+            {_id: userId, 'posts._id': postId},
+            {$push: {"posts.$.comments": {
+                user: req.user._id,
+                content
+            }}}, 
+            {new: true}
+        );
+
+        return res.status(200).json({
+            message: "comment added"
+        });
+        
+    } catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+        
+    }
+}
+export const addReply = async (req: AuthRequest, res: Response) => {
+    const {postId, userId, commentId, content} = req.body;
+
+    try {
+        const user = await User.findOneAndUpdate(
+            {_id: userId, 'posts._id': postId, "posts.comments._id": commentId},
+            {$push: {"posts.$[outer].comments.$[inner].replies": {
+                user: req.user._id,
+                content
+            }}}, 
+            {
+                new: true,
+                arrayFilters: [
+                    {"outer._id": postId},
+                    {"inner._id": commentId}
+                ]
+            },
+        );
+
+        return res.status(200).json({
+            message: "reply added"
+        });
+        
+    } catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+        
+    }
+}
+
