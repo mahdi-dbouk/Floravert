@@ -3,7 +3,7 @@ const { model, Schema } = mongoose;
 const scannedPlantSchema = new Schema({
     image: { type: String, required: true },
     commonName: { type: String, required: true },
-    bontanicalName: { type: String, required: true },
+    botanicalName: { type: String, required: true },
     description: { type: String, required: true },
     keyFacts: {
         edibility: { type: String, required: false },
