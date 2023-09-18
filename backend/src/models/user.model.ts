@@ -3,6 +3,8 @@ import {scannedPlantSchema } from "./scannedplant.model.js";
 import postSchema from "./schemas/post.schema.js";
 import messageSchema from "./schemas/message.schema.js";
 import contactSchema from "./schemas/contact.schema.js";
+import productSchema from "./schemas/product.schema.js";
+
 const { model, Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -17,9 +19,10 @@ const userSchema = new Schema({
 
     posts: [postSchema],
     scannedPlants: [scannedPlantSchema],
+    products: [productSchema],
     messages: [messageSchema],
-    followers: [{type: Schema.Types.ObjectId, ref: 'User', required: true}],
-    followed: [{type: Schema.Types.ObjectId, ref: 'User', required: true}],
+    followers: [{type: Schema.Types.ObjectId, ref: 'User', required: false}],
+    followed: [{type: Schema.Types.ObjectId, ref: 'User', required: false}],
     contacts: [contactSchema]
 
 });
