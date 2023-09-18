@@ -1,6 +1,7 @@
 import User from '../models/user.model.js';
 import { decodeThenSendToS3 } from '../utils/image.handler.js';
 import { validationResult } from 'express-validator';
+import mongoose from 'mongoose';
 export const addScanned = async (req, res) => {
     const _id = req.user._id;
     //validation errors
@@ -80,6 +81,29 @@ export const follow = async (req, res) => {
                 message: "followed"
             });
         }
+    }
+    catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+    }
+};
+export const unfollow = async (req, res) => {
+    const { userId } = req.body;
+    const _id = req.user._id;
+    console.log(_id, userId);
+    try {
+        const user = await User.findOne({ _id });
+        if (!user.followed.includes(userId)) {
+            return res.status(400).json({
+                message: "User is already unfollowed"
+            });
+        }
+        const updatedUser = await User.findOneAndUpdate({ _id: _id }, { $pullAll: { followed: [new mongoose.Types.ObjectId(userId)] } }, { new: true });
+        const followedUser = await User.findOneAndUpdate({ _id: userId }, { $pullAll: { followers: [new mongoose.Types.ObjectId(_id)] } }, { new: true });
+        return res.status(200).json({
+            message: "unfollowed"
+        });
     }
     catch (error) {
         return res.status(500).json({
