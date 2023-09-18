@@ -1,8 +1,9 @@
 import {Router} from "express";
 import {login,logout,register} from '../controllers/auth.controller.js';
-import { addScanned, addPost, follow } from "../controllers/user.controller.js";
+import { addScanned, addPost, follow, unfollow } from "../controllers/user.controller.js";
 import {isAuthorized} from '../middlewares/auth.middleware.js';
 import {check} from "express-validator";
+
 let router : Router = Router();
 
 router.post("/login", [
@@ -35,5 +36,5 @@ router.post('/posts/add', [
 ], isAuthorized, addPost);
 
 router.post('/follow', isAuthorized, follow);
-
+router.post('/unfollow', isAuthorized, unfollow);
 export default router;
