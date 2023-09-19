@@ -3,7 +3,6 @@ const {model, Schema} = mongoose;
 
 const productSchema = new Schema({
     name: {type: String, required: true},
-    traderId: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     category: {type: String, required: true},
     ratings: [{type: Number, required: false}],
     images: [{type: String, required: false}],
