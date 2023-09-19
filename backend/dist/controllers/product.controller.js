@@ -30,9 +30,23 @@ export const createProduct = async (req, res) => {
     }
 };
 export const getAllProducts = async (req, res) => {
-    const users = await User.find({}, 'products');
+    const users = await User.find();
+    console.log(users);
+    const allProducts = [];
     try {
-        const allProducts = users.flatMap(user => user.products);
+        for (const user of users) {
+            for (const product of user.products) {
+                const productWithTrader = {
+                    traderName: `${user.firstName} ${user.lastName}`,
+                    email: user.email,
+                    phone: user.phone,
+                    traderId: user._id,
+                    traderProfilePic: user.picture_url,
+                    product
+                };
+                allProducts.push(productWithTrader);
+            }
+        }
         return res.status(200).json({
             data: allProducts
         });
@@ -60,6 +74,30 @@ export const deleteProduct = async (req, res) => {
     catch (error) {
         return res.status(500).json({
             message: "failed to delete",
+            error: error
+        });
+    }
+};
+export const updateProduct = async (req, res) => {
+    const _id = req.user._id;
+    const { productId, name, category, description, totalQuantity } = req.body;
+    try {
+        const updatedProduct = await User.findOneAndUpdate({ _id, 'products._id': productId }, {
+            $set: {
+                'products.$.name': name,
+                'products.$.category': category,
+                'products.$.description': description,
+                'products.$.totalQuantity': totalQuantity,
+            }
+        }, { new: true });
+        return res.status(200).json({
+            message: "updated successfully",
+            product: updatedProduct
+        });
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "failed to update",
             error: error
         });
     }
