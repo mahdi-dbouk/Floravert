@@ -38,3 +38,18 @@ export const createProduct = async (req: AuthRequest, res: Response) => {
     }
 }
 
+export const getAllProducts = async (req: AuthRequest, res: Response) => {
+    const users = await User.find({}, 'products');
+    try {
+        const allProducts = users.flatMap(user => user.products);
+        return res.status(200).json({
+            data: allProducts
+        });
+    } catch (error) {
+        return res.status(500).json({
+            error: error
+        });
+    }
+
+}
+
