@@ -111,4 +111,22 @@ export const unfollow = async (req, res) => {
         });
     }
 };
+export const becomeTrader = async (req, res) => {
+    const _id = req.user._id;
+    try {
+        const updatedUser = await User.findOneAndUpdate({ _id }, {
+            $set: { isTrader: true }
+        }, { new: true });
+        res.status(200).json({
+            message: "Account converted successfully",
+            user: updatedUser
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "failed to convert the account",
+            error: error
+        });
+    }
+};
 //# sourceMappingURL=user.controller.js.map
