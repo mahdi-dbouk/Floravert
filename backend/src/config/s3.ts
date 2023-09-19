@@ -13,12 +13,13 @@ const s3 = new S3({
     secretAccessKey
 });
 
-export const uploadToS3 = (buffer: Buffer, key: string) => {
+export const uploadToS3 = (buffer: Buffer, key: string, contentType: string) => {
     const passThrough = new PassThrough();
     const uploadParams = {
         Bucket: bucketName,
         Body: passThrough,
-        Key: key
+        Key: key,
+        ContentType: contentType,
     };
     
     passThrough.end(buffer);
