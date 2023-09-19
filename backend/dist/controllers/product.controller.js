@@ -43,4 +43,25 @@ export const getAllProducts = async (req, res) => {
         });
     }
 };
+export const deleteProduct = async (req, res) => {
+    const _id = req.user._id;
+    const { productId } = req.body;
+    try {
+        const updatedUser = await User.findOneAndUpdate({ _id }, {
+            $pull: {
+                products: { _id: productId }
+            },
+        }, { new: true });
+        return res.status(200).json({
+            message: "Product deleted successfully",
+            user: updatedUser
+        });
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "failed to delete",
+            error: error
+        });
+    }
+};
 //# sourceMappingURL=product.controller.js.map
