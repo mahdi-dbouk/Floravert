@@ -4,7 +4,7 @@ import { addScanned, addPost, follow, unfollow, becomeTrader } from "../controll
 import {isAuthorized} from '../middlewares/auth.middleware.js';
 import {check} from "express-validator";
 import { isTrader } from "../middlewares/trader.middleware.js";
-import { createProduct } from "../controllers/product.controller.js";
+import { createProduct, getAllProducts } from "../controllers/product.controller.js";
 
 let router : Router = Router();
 
@@ -44,4 +44,5 @@ router.post('/unfollow', isAuthorized, unfollow);
 router.post('/account/trader', isAuthorized, becomeTrader);
 
 router.post('/trader/product/add', isAuthorized, isTrader, createProduct);
+router.get('/products', isAuthorized, getAllProducts);
 export default router;
