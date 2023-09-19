@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { login, logout, register } from '../controllers/auth.controller.js';
-import { addScanned, addPost, follow, unfollow } from "../controllers/user.controller.js";
+import { addScanned, addPost, follow, unfollow, becomeTrader } from "../controllers/user.controller.js";
 import { isAuthorized } from '../middlewares/auth.middleware.js';
 import { check } from "express-validator";
+import { isTrader } from "../middlewares/trader.middleware.js";
+import { createProduct } from "../controllers/product.controller.js";
 let router = Router();
 router.post("/login", [
     check('email').isEmail().withMessage("Incorrectly formatted email"),
@@ -29,5 +31,7 @@ router.post('/posts/add', [
 ], isAuthorized, addPost);
 router.post('/follow', isAuthorized, follow);
 router.post('/unfollow', isAuthorized, unfollow);
+router.post('/account/trader', isAuthorized, becomeTrader);
+router.post('/trader/product/add', isAuthorized, isTrader, createProduct);
 export default router;
 //# sourceMappingURL=user.routes.js.map
