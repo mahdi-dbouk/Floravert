@@ -50,19 +50,19 @@ class User {
     if (json['posts'] != null) {
       posts = <Post>[];
       json['posts'].forEach((v) {
-        posts!.add(new Post.fromJson(v));
+        posts!.add(Post.fromJson(v));
       });
     }
     if (json['scannedPlants'] != null) {
       scannedPlants = <ScannedPlant>[];
       json['scannedPlants'].forEach((v) {
-        scannedPlants!.add(new ScannedPlant.fromJson(v));
+        scannedPlants!.add(ScannedPlant.fromJson(v));
       });
     }
     if (json['messages'] != null) {
       messages = <Message>[];
       json['messages'].forEach((v) {
-        messages!.add(new Message.fromJson(v));
+        messages!.add(Message.fromJson(v));
       });
     }
     followers = json['followers'].cast<String>();
@@ -70,44 +70,43 @@ class User {
     if (json['contacts'] != null) {
       contacts = <Contact>[];
       json['contacts'].forEach((v) {
-        contacts!.add(new Contact.fromJson(v));
+        contacts!.add(Contact.fromJson(v));
       });
     }
     if (json['products'] != null) {
       products = <Product>[];
       json['products'].forEach((v) {
-        products!.add(new Product.fromJson(v));
+        products!.add(Product.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.id;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['email'] = this.email;
-    data['age'] = this.age;
-    data['phone'] = this.phone;
-    data['picture_url'] = this.pictureUrl;
-    data['isTrader'] = this.isTrader;
-    if (this.posts != null) {
-      data['posts'] = this.posts!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['_id'] = id;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['email'] = email;
+    data['age'] = age;
+    data['phone'] = phone;
+    data['picture_url'] = pictureUrl;
+    data['isTrader'] = isTrader;
+    if (posts != null) {
+      data['posts'] = posts!.map((v) => v.toJson()).toList();
     }
-    if (this.scannedPlants != null) {
-      data['scannedPlants'] =
-          this.scannedPlants!.map((v) => v.toJson()).toList();
+    if (scannedPlants != null) {
+      data['scannedPlants'] = scannedPlants!.map((v) => v.toJson()).toList();
     }
-    if (this.messages != null) {
-      data['messages'] = this.messages!.map((v) => v.toJson()).toList();
+    if (messages != null) {
+      data['messages'] = messages!.map((v) => v.toJson()).toList();
     }
-    data['followers'] = this.followers;
-    data['followed'] = this.followed;
-    if (this.contacts != null) {
-      data['contacts'] = this.contacts!.map((v) => v.toJson()).toList();
+    data['followers'] = followers;
+    data['followed'] = followed;
+    if (contacts != null) {
+      data['contacts'] = contacts!.map((v) => v.toJson()).toList();
     }
-    if (this.products != null) {
-      data['products'] = this.products!.map((v) => v.toJson()).toList();
+    if (products != null) {
+      data['products'] = products!.map((v) => v.toJson()).toList();
     }
     return data;
   }
