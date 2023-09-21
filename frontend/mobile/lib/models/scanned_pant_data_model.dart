@@ -1,5 +1,5 @@
 import 'key_facts_data_model.dart';
-import 'recipe_data_class.dart';
+import 'recipe_data_model.dart';
 
 class ScannedPlant {
   KeyFacts? keyFacts;
