@@ -1,7 +1,7 @@
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '/widgets/textinput.dart';
 
 class Setup extends StatefulWidget {
@@ -73,7 +73,8 @@ class _SetupState extends State<Setup> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: DateTimeField(
-                format: DateFormat('dd/mm/yyyy'),
+                format: DateFormat('d/M/y'),
+                initialValue: DateTime.now(),
                 readOnly: true,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -110,11 +111,43 @@ class _SetupState extends State<Setup> {
                 },
               ),
             ),
-            TextInput(
-                controller: TextEditingController(),
-                label: "Phone *",
-                placeholder: "+0000 00000000",
-                isHidden: false),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: InternationalPhoneNumberInput(
+                onInputChanged: (value) {},
+                selectorConfig: const SelectorConfig(
+                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                  setSelectorButtonAsPrefixIcon: true,
+                  leadingPadding: 10.0,
+                ),
+                inputDecoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    fillColor: Colors.white,
+                    filled: true,
+                    labelText: "Phone*",
+                    hintText: "Phone*",
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade400, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    suffixIcon: const Icon(
+                      Icons.phone_android_outlined,
+                      color: Colors.green,
+                    )),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: SizedBox(
