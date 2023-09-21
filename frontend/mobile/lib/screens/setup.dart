@@ -1,3 +1,6 @@
+import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '/widgets/textinput.dart';
 
@@ -67,15 +70,46 @@ class _SetupState extends State<Setup> {
                 label: "Username",
                 placeholder: "Username",
                 isHidden: false),
-            TextInput(
-                controller: TextEditingController(),
-                label: "Date of Birth *",
-                placeholder: "Choose a Date",
-                isHidden: false),
-            DatePickerDialog(
-                initialDate: DateTime(2000),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2023)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: DateTimeField(
+                format: DateFormat('dd/mm/yyyy'),
+                readOnly: true,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    fillColor: Colors.white,
+                    filled: true,
+                    labelText: "Date of Birth*",
+                    hintText: "Date of Birth*",
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade400, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    suffixIcon: const Icon(
+                      Icons.calendar_month_outlined,
+                      color: Colors.green,
+                    )),
+                onShowPicker: (context, currentValue) {
+                  return showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2005),
+                      lastDate: DateTime.now());
+                },
+              ),
+            ),
             TextInput(
                 controller: TextEditingController(),
                 label: "Phone *",
