@@ -14,11 +14,11 @@ class KeyFacts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['edibility'] = this.edibility;
-    data['seasonality'] = this.seasonality;
-    data['habitat'] = this.habitat;
-    data['uses'] = this.uses;
+    final Map<String, dynamic> data = {};
+    data['edibility'] = edibility;
+    data['seasonality'] = seasonality;
+    data['habitat'] = habitat;
+    data['uses'] = uses;
     return data;
   }
 }
