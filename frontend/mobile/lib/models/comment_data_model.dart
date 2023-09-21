@@ -25,20 +25,20 @@ class Comment {
     if (json['replies'] != null) {
       replies = <Reply>[];
       json['replies'].forEach((v) {
-        replies!.add(new Reply.fromJson(v));
+        replies!.add(Reply.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user'] = this.user;
-    data['content'] = this.content;
-    data['_id'] = this.id;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    if (this.replies != null) {
-      data['replies'] = this.replies!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['user'] = user;
+    data['content'] = content;
+    data['_id'] = id;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    if (replies != null) {
+      data['replies'] = replies!.map((v) => v.toJson()).toList();
     }
     return data;
   }
