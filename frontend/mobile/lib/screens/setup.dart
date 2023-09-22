@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '/widgets/textinput.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class Setup extends StatefulWidget {
   const Setup({super.key});
@@ -12,6 +14,18 @@ class Setup extends StatefulWidget {
 }
 
 class _SetupState extends State<Setup> {
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +78,40 @@ class _SetupState extends State<Setup> {
                   ),
                 ],
               ),
+            ),
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.green, width: 2)),
+                  child: CircleAvatar(
+                    radius: 80,
+                    backgroundImage: _image != null
+                        ? FileImage(_image!)
+                        : const AssetImage(
+                                'assets/green_placeholder_avatar.jpg')
+                            as ImageProvider,
+                  ),
+                ),
+                Positioned(
+                    top: 148,
+                    left: 56,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.green, width: 2),
+                          color: Colors.white),
+                      child: IconButton(
+                          color: Colors.green,
+                          onPressed: _pickImage,
+                          icon: const Icon(Icons.add_a_photo)),
+                    ))
+              ],
+            ),
+            const SizedBox(
+              height: 100,
             ),
             TextInput(
                 controller: TextEditingController(),
