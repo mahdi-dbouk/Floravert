@@ -41,6 +41,16 @@ class Landing extends StatelessWidget {
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/floravert_logo.png',
+                  scale: 3,
+                )
+              ],
+            ),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
               child: Center(
