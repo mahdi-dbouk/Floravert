@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'login/view/login.dart';
+import 'login.dart';
 import '/widgets/textinput.dart';
 
 class Register extends StatefulWidget {
