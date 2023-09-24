@@ -17,10 +17,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications),
-          color: Theme.of(context).primaryColor,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_outlined,
+                size: 28,
+              ),
+              color: Theme.of(context).primaryColor,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.chat_bubble_rounded,
+                size: 26,
+              ),
+              color: Theme.of(context).primaryColor,
+            ),
+          ],
         ),
       ],
       leading: Builder(builder: (context) {
@@ -28,7 +45,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
-          icon: const Icon(Icons.menu_rounded),
+          icon: const Icon(
+            Icons.menu_rounded,
+            size: 28,
+          ),
           color: Theme.of(context).primaryColor,
         );
       }),
