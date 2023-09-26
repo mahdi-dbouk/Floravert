@@ -2,6 +2,7 @@ import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:provider/provider.dart';
 import '/widgets/textinput.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -18,6 +19,7 @@ class _SetupState extends State<Setup> {
 
   TextEditingController dateTimeFieldInputController = TextEditingController();
   TextEditingController userNameFieldInputController = TextEditingController();
+  String phoneNumber = "";
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -45,9 +47,9 @@ class _SetupState extends State<Setup> {
         ),
       );
     }
-    final String fullName = arguments!['fullName'];
-    final String email = arguments['email'];
-    final String password = arguments['password'];
+    final String? fullName = arguments!['fullName'];
+    final String? email = arguments['email'];
+    final String? password = arguments['password'];
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
@@ -183,7 +185,9 @@ class _SetupState extends State<Setup> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: InternationalPhoneNumberInput(
-                onInputChanged: (value) {},
+                onInputChanged: (PhoneNumber phone) {
+                  phoneNumber = phone.phoneNumber!;
+                },
                 selectorConfig: const SelectorConfig(
                   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                   setSelectorButtonAsPrefixIcon: true,
