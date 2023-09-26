@@ -143,6 +143,121 @@ class _MarketState extends State<Market> {
             ],
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        Expanded(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              itemCount: products.length,
+              itemBuilder: (context, index) => Container(
+                height: 120,
+                padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                        bottom: BorderSide(width: 1, color: Colors.black26))),
+                child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 120,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              height: 100,
+                              child: AspectRatio(
+                                aspectRatio: 1 / 1,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              products[index].url!,
+                                              scale: 1),
+                                          fit: BoxFit.cover,
+                                          scale: 1)),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              height: 100,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    products[index].name!,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    '\$${products[index].price!}',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              padding: const EdgeInsets.only(right: 5),
+                              height: 100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  (products[index].isAvailable!)
+                                      ? Container(
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.green[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: const Text(
+                                            "available",
+                                            style: TextStyle(fontSize: 10),
+                                          ))
+                                      : Container(
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: const Text(
+                                            "Out of Stock",
+                                            style: TextStyle(fontSize: 10),
+                                          ))
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
