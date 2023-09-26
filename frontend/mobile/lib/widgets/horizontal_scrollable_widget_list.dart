@@ -14,6 +14,11 @@ class HorizontallyScrollableSection extends StatefulWidget {
 class _HorizontallyScrollableSectionState
     extends State<HorizontallyScrollableSection> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
