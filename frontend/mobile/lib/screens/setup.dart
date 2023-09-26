@@ -17,6 +17,7 @@ class _SetupState extends State<Setup> {
   File? _image;
 
   TextEditingController dateTimeFieldInputController = TextEditingController();
+  TextEditingController userNameFieldInputController = TextEditingController();
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -133,7 +134,7 @@ class _SetupState extends State<Setup> {
               height: 100,
             ),
             TextInput(
-                controller: TextEditingController(),
+                controller: userNameFieldInputController,
                 label: "Username",
                 placeholder: "Username",
                 isHidden: false),
