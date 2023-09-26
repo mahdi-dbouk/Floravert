@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class WelcomeBanner extends StatelessWidget {
-  const WelcomeBanner({super.key});
+class WelcomeBanner extends StatefulWidget {
+  final String? name;
+  final String url;
+  const WelcomeBanner({super.key, required this.name, required this.url});
 
+  @override
+  State<WelcomeBanner> createState() => _WelcomeBannerState();
+}
+
+class _WelcomeBannerState extends State<WelcomeBanner> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,7 +36,7 @@ class WelcomeBanner extends StatelessWidget {
             Text.rich(TextSpan(children: [
               const TextSpan(text: "Hello, ", style: TextStyle(fontSize: 18)),
               TextSpan(
-                  text: "Mike",
+                  text: widget.name,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 18,
