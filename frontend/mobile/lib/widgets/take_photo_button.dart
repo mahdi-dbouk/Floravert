@@ -31,8 +31,8 @@ class _NavBarImageButtonState extends State<NavBarImageButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
-      width: 80,
+      height: 60,
+      width: 60,
       child: FloatingActionButton(
         onPressed: () {
           _pickImage();
@@ -41,7 +41,7 @@ class _NavBarImageButtonState extends State<NavBarImageButton> {
         shape: const CircleBorder(),
         child: const Icon(
           Icons.camera_alt_outlined,
-          size: 48,
+          size: 36,
           color: Colors.white,
         ),
       ),
