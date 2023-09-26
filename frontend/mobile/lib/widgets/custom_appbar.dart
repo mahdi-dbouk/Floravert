@@ -30,7 +30,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               color: Theme.of(context).primaryColor,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/contacts');
+              },
               icon: const Icon(
                 Icons.chat_bubble_rounded,
                 size: 26,
