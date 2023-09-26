@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
-  final dynamic controller;
+  final TextEditingController controller;
   final String label;
   final String placeholder;
   final bool isHidden;
