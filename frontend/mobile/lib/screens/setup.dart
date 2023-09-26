@@ -16,6 +16,8 @@ class Setup extends StatefulWidget {
 class _SetupState extends State<Setup> {
   File? _image;
 
+  TextEditingController dateTimeFieldInputController = TextEditingController();
+
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
@@ -28,6 +30,23 @@ class _SetupState extends State<Setup> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+    final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
+
+    if (args == null) {
+      // Handle null arguments
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Error'),
+        ),
+        body: const Center(
+          child: Text('Invalid arguments'),
+        ),
+      );
+    }
+    final String fullName = arguments!['fullName'];
+    final String email = arguments['email'];
+    final String password = arguments['password'];
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
@@ -121,6 +140,7 @@ class _SetupState extends State<Setup> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: DateTimeField(
+                controller: dateTimeFieldInputController,
                 format: DateFormat('d/M/y'),
                 initialValue: DateTime.now(),
                 readOnly: true,
