@@ -81,11 +81,13 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextInput(
+                    maxLines: 1,
                     controller: emailInputController,
                     label: "Email",
                     placeholder: "Email",
                     isHidden: false),
                 TextInput(
+                    maxLines: 1,
                     controller: passwordInputController,
                     label: "Password",
                     placeholder: "Password",
