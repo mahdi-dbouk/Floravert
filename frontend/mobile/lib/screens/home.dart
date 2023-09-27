@@ -42,16 +42,38 @@ class _HomeState extends State<Home> {
                           child: Column(
                         children: [
                           Center(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(200),
-                                  border: Border.all(
-                                      color: Colors.yellow, width: 2)),
-                              child: CircleAvatar(
-                                radius: 40,
-                                backgroundImage: NetworkImage(
-                                    authUserModel.user.pictureUrl ?? ""),
-                              ),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(200),
+                                      border: Border.all(
+                                          color: Colors.yellow, width: 2)),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: NetworkImage(
+                                        authUserModel.user.pictureUrl ?? ""),
+                                  ),
+                                ),
+                                Positioned(
+                                    top: 63,
+                                    left: 20,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2, horizontal: 5),
+                                      decoration: BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: const Text(
+                                        "Trader",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10),
+                                      ),
+                                    ))
+                              ],
                             ),
                           ),
                           TextButton(
@@ -63,16 +85,28 @@ class _HomeState extends State<Home> {
                               )),
                         ],
                       )),
-                      const ListTile(
-                        leading: Icon(
-                          Icons.stars_rounded,
-                          color: Colors.amber,
-                          size: 30,
-                        ),
-                        title: Text(
-                          "Become a Trader",
-                          style: TextStyle(fontSize: 22, color: Colors.white),
-                        ),
+                      ListTile(
+                        onTap: () {
+                          authUserModel.becomeTrader();
+                        },
+                        leading: (!authUserModel.user.isTrader!)
+                            ? const Icon(
+                                Icons.stars_rounded,
+                                color: Colors.amber,
+                                size: 30,
+                              )
+                            : const Text(''),
+                        title: (authUserModel.user.isTrader!)
+                            ? const Text(
+                                "",
+                                style: TextStyle(
+                                    fontSize: 22, color: Colors.white),
+                              )
+                            : const Text(
+                                "Become a Trader",
+                                style: TextStyle(
+                                    fontSize: 22, color: Colors.white),
+                              ),
                       ),
                       const Expanded(child: SizedBox()),
                       Padding(
