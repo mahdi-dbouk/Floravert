@@ -8,7 +8,7 @@ const productSchema = new Schema({
     price: {type: Number, required: false},
     images: [{type: String, required: false}],
     description: {type: String, required: true},
-    totalQuantity: {type: String, required: true}
+    totalQuantity: {type: Number, required: true}
 });
 
 export default productSchema;
