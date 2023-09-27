@@ -8,47 +8,41 @@ class CustomBottomNavigator extends StatefulWidget {
 }
 
 class _CustomBottomNavigatorState extends State<CustomBottomNavigator> {
+  final int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      shadowColor: Colors.black,
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 6,
-      surfaceTintColor: Colors.white,
-      color: Colors.white,
-      height: 64,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.home,
-                  size: 28, color: Theme.of(context).primaryColor)),
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.map,
-                size: 28,
-                color: Colors.grey.shade400,
-              )),
-          const SizedBox(width: 28),
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.store,
-                size: 28,
-                color: Colors.grey.shade400,
-              )),
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.post_add,
-                size: 28,
-                color: Colors.grey.shade400,
-              ))
-        ],
-      ),
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedLabelStyle:
+          TextStyle(color: Theme.of(context).colorScheme.primary),
+      unselectedLabelStyle: TextStyle(color: Colors.grey.shade400),
+      items: [
+        BottomNavigationBarItem(
+            label: 'Home',
+            icon: (_currentIndex == 0)
+                ? Icon(Icons.home,
+                    size: 24, color: Theme.of(context).primaryColor)
+                : Icon(Icons.home, size: 24, color: Colors.grey.shade400)),
+        BottomNavigationBarItem(
+            label: 'Map',
+            icon: (_currentIndex == 0)
+                ? Icon(Icons.map,
+                    size: 24, color: Theme.of(context).primaryColor)
+                : Icon(Icons.map, size: 28, color: Colors.grey.shade400)),
+        BottomNavigationBarItem(
+            label: 'Market',
+            icon: (_currentIndex == 0)
+                ? Icon(Icons.store,
+                    size: 24, color: Theme.of(context).primaryColor)
+                : Icon(Icons.store, size: 24, color: Colors.grey.shade400)),
+        BottomNavigationBarItem(
+            label: 'Thread',
+            icon: (_currentIndex == 0)
+                ? Icon(Icons.post_add,
+                    size: 24, color: Theme.of(context).primaryColor)
+                : Icon(Icons.post_add, size: 24, color: Colors.grey.shade400)),
+      ],
     );
   }
 }
