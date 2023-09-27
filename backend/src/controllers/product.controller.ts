@@ -5,7 +5,7 @@ import { processImages } from "../utils/image.handler.js";
 
 export const createProduct = async (req: AuthRequest, res: Response) => {
     const _id = req.user._id;
-    const {name, category, images, description, totalQuantity} = req.body;
+    const {name, category, images, price, description, totalQuantity} = req.body;
 
 
     const imageUrls = await processImages(images, res);
@@ -17,6 +17,7 @@ export const createProduct = async (req: AuthRequest, res: Response) => {
                     name,
                     category,
                     description,
+                    price,
                     images: imageUrls,
                     totalQuantity
                 }
