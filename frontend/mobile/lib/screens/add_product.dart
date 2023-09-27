@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/textinput.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProductForm extends StatefulWidget {
   const AddProductForm({super.key});
@@ -10,6 +13,28 @@ class AddProductForm extends StatefulWidget {
 
 class _AddProductFormState extends State<AddProductForm> {
   String selectedOption = 'natural';
+
+  List<File> selectedImages = [];
+
+  Future getImages() async {
+    final pickedFile = await ImagePicker()
+        .pickMultiImage(imageQuality: 100, maxHeight: 1000, maxWidth: 1000);
+    List<XFile> xfilePick = pickedFile;
+
+    setState(
+      () {
+        if (xfilePick.isNotEmpty) {
+          for (var i = 0; i < xfilePick.length; i++) {
+            selectedImages.add(File(xfilePick[i].path));
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Nothing is selected')));
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +81,9 @@ class _AddProductFormState extends State<AddProductForm> {
             height: 20,
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              getImages();
+            },
             icon: const Icon(Icons.add_a_photo_outlined),
             label: const Text("Append Image"),
           ),
