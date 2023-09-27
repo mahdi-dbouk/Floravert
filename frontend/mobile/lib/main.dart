@@ -6,6 +6,7 @@ import 'package:mobile/screens/add_product.dart';
 import 'package:mobile/screens/chat.dart';
 import 'package:mobile/screens/contacts.dart';
 import 'package:mobile/screens/map_page.dart';
+import 'package:mobile/screens/product.dart';
 import 'package:mobile/screens/scanresults.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
@@ -74,7 +75,8 @@ class _AppState extends State<App> {
           '/chat': (context) => const Chats(),
           '/scanned': (context) => const ScannedResult(),
           '/map': (context) => const MapPage(),
-          '/add/product': (context) => const AddProductForm()
+          '/add/product': (context) => const AddProductForm(),
+          '/product': (context) => const ProductView()
         },
       ),
     );
