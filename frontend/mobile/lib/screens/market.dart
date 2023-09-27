@@ -100,56 +100,63 @@ class _MarketState extends State<Market> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
-                  width: 100,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(2),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    tileColor: (_selectedOption == 0)
-                        ? Colors.green[100]
-                        : Colors.white,
-                    title: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.spa_rounded),
-                        SizedBox(width: 2),
-                        Text('Natural'),
-                      ],
+                Expanded(
+                  child: SizedBox(
+                    width: 100,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(2),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      tileColor: (_selectedOption == 0)
+                          ? Colors.green[100]
+                          : Colors.white,
+                      title: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.spa_rounded),
+                          SizedBox(width: 2),
+                          Text('Natural'),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _selectedOption = 0;
+                        });
+                      },
                     ),
-                    onTap: () {
-                      setState(() {
-                        _selectedOption = 0;
-                      });
-                    },
                   ),
                 ),
-                SizedBox(
-                  width: 100,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(2),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    tileColor: (_selectedOption == 1)
-                        ? Colors.green[100]
-                        : Colors.white,
-                    title: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.spa_rounded),
-                        SizedBox(width: 2),
-                        Text('Processed'),
-                      ],
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: SizedBox(
+                    width: 100,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(2),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      tileColor: (_selectedOption == 1)
+                          ? Colors.green[100]
+                          : Colors.white,
+                      title: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.spa_rounded),
+                          SizedBox(width: 2),
+                          Text('Processed'),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _selectedOption = 1;
+                        });
+                      },
                     ),
-                    onTap: () {
-                      setState(() {
-                        _selectedOption = 1;
-                      });
-                    },
                   ),
                 ),
               ],
