@@ -23,10 +23,10 @@ class _WelcomeBannerState extends State<WelcomeBanner> {
             Container(
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: 1)),
-              child: const CircleAvatar(
+                  border: Border.all(color: Colors.green, width: 3)),
+              child: CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage(
+                backgroundImage: NetworkImage(widget.url ??
                     'https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp'),
               ),
             ),
