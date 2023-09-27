@@ -19,20 +19,23 @@ class Product {
 
 class _MarketState extends State<Market> {
   final TextEditingController _searchInputController = TextEditingController();
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Provider.of<ProductProvider>(context, listen: false).getAllProducts();
-  }
 
   int _selectedOption = 0;
-  List products = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Call getAllProducts here to fetch the products only once
+    Provider.of<ProductProvider>(context, listen: false).getAllProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductProvider>(
-      builder: (BuildContext context, productModel, child) => Column(
+        builder: (BuildContext context, productModel, child) {
+      print(productModel.products[0].images ?? "not found");
+      return Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
@@ -169,7 +172,7 @@ class _MarketState extends State<Market> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                itemCount: products.length,
+                itemCount: productModel.products.length,
                 itemBuilder: (context, index) => Container(
                   height: 120,
                   padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
@@ -223,7 +226,7 @@ class _MarketState extends State<Market> {
                                       productModel.products[index].name!,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20),
+                                          fontSize: 18),
                                     ),
                                     Text(
                                       '\$${productModel.products[index].price!}',
@@ -247,7 +250,7 @@ class _MarketState extends State<Market> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    (products[index].isAvailable!)
+                                    (true)
                                         ? Container(
                                             padding: const EdgeInsets.all(6),
                                             decoration: BoxDecoration(
@@ -280,7 +283,7 @@ class _MarketState extends State<Market> {
             ),
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 }
