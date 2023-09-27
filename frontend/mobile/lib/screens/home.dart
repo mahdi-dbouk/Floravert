@@ -81,7 +81,11 @@ class _HomeState extends State<Home> {
                             width: 200,
                             height: 60,
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  authUserModel.logout();
+                                  Navigator.of(context)
+                                      .popAndPushNamed('/login');
+                                },
                                 child: const Text(
                                   "Logout",
                                   style: TextStyle(
