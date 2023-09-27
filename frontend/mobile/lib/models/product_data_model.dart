@@ -1,4 +1,7 @@
 class Product {
+  String? traderName;
+  String? traderEmail;
+  String? phone;
   String? name;
   String? category;
   List<int>? ratings;
@@ -17,13 +20,16 @@ class Product {
       this.totalQuantity});
 
   Product.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    category = json['category'];
-    price = json['price'];
-    ratings = json['ratings'].cast<int>();
-    images = json['images'].cast<String>();
-    description = json['description'];
-    totalQuantity = json['totalQuantity'];
+    traderName = json['traderName'];
+    traderEmail = json['email'];
+    phone = json['phone'];
+    name = json['product']['name'];
+    category = json['product']['category'];
+    price = json['product']['price'];
+    ratings = json['product']['ratings'].cast<int>() ?? [];
+    images = json['product']['images'].cast<String>() ?? [];
+    description = json['product']['description'];
+    totalQuantity = json['product']['totalQuantity'];
   }
 
   Map<String, dynamic> toJson() {
