@@ -65,8 +65,10 @@ class User {
         messages!.add(Message.fromJson(v));
       });
     }
-    followers = json['followers'].cast<String>();
-    followed = json['followed'].cast<String>();
+    followers =
+        (json['followers'] != null) ? json['followers'].cast<String>() : [];
+    followed =
+        (json['followed'] != null) ? json['followed'].cast<String>() : [];
     if (json['contacts'] != null) {
       contacts = <Contact>[];
       json['contacts'].forEach((v) {
