@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/models/user_data_model.dart';
+import 'package:mobile/providers/product_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
+import 'package:mobile/models/product_data_model.dart';
 import 'package:provider/provider.dart';
 import '../config/send_request.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +45,8 @@ class AuthProvider extends ChangeNotifier {
       try {
         Provider.of<ScannedPlantProvider>(ctx, listen: false).setScannedPlants(
             List<ScannedPlant>.from(user.scannedPlants ?? []));
+        Provider.of<ProductProvider>(ctx, listen: false)
+            .setProducts(List<Product>.from(user.products ?? []));
       } on Exception catch (e) {
         print(e);
       }
