@@ -138,10 +138,12 @@ class _SetupState extends State<Setup> {
                 height: 100,
               ),
               TextInput(
-                  controller: userNameFieldInputController,
-                  label: "Username",
-                  placeholder: "Username",
-                  isHidden: false),
+                controller: userNameFieldInputController,
+                label: "Username",
+                placeholder: "Username",
+                isHidden: false,
+                maxLines: 1,
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
