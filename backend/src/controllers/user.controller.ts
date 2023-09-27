@@ -23,6 +23,8 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
         base64Image,
         keyFacts,
         description,
+        benefits,
+        commonUses,
         recipes,
         regions
 
@@ -39,6 +41,8 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
                     description,
                     image: awsResponse.Location,
                     keyFacts: {...keyFacts},
+                    benefits: benefits,
+                    commonUses: commonUses,
                     recipes:[...recipes],
                     regions: regions
                 }
