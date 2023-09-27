@@ -36,12 +36,6 @@ class _CustomBottomNavigatorState extends State<CustomBottomNavigator> {
                 ? Icon(Icons.store,
                     size: 24, color: Theme.of(context).primaryColor)
                 : Icon(Icons.store, size: 24, color: Colors.grey.shade400)),
-        BottomNavigationBarItem(
-            label: 'Thread',
-            icon: (_currentIndex == 0)
-                ? Icon(Icons.post_add,
-                    size: 24, color: Theme.of(context).primaryColor)
-                : Icon(Icons.post_add, size: 24, color: Colors.grey.shade400)),
       ],
     );
   }
