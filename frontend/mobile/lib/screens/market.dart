@@ -219,7 +219,7 @@ class _MarketState extends State<Market> {
                                           fontSize: 20),
                                     ),
                                     Text(
-                                      '\$4',
+                                      '\$${productModel.products[index].price!}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
