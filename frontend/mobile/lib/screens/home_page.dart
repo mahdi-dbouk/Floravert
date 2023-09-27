@@ -26,7 +26,9 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WelcomeBanner(name: widget.authUserModel?.user.firstName, url: ''),
+            WelcomeBanner(
+                name: widget.authUserModel?.user.firstName,
+                url: widget.authUserModel?.user.pictureUrl ?? ""),
             const SizedBox(
               height: 10,
             ),
