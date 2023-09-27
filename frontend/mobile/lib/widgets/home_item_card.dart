@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 class HomeItemCard extends StatefulWidget {
   final String commonName;
-  final String url;
+  final String? url;
   final ScannedPlant item;
   const HomeItemCard(
       {super.key,
@@ -34,7 +34,8 @@ class _HomeItemCardState extends State<HomeItemCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  widget.url,
+                  widget.url ??
+                      "https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-square.png",
                   fit: BoxFit.cover,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
