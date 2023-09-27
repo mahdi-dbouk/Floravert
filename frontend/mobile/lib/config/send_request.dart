@@ -20,7 +20,6 @@ Future<dynamic> sendRequest(String route, String method,
   try {
     switch (method.toLowerCase()) {
       case 'post':
-        print(json);
         response = await dio.post(route, data: json);
         break;
       case 'get':
