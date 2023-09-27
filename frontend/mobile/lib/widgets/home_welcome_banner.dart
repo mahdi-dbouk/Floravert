@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class WelcomeBanner extends StatefulWidget {
   final String? name;
-  final String url;
+  final String? url;
   const WelcomeBanner({super.key, required this.name, required this.url});
 
   @override
