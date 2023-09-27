@@ -92,8 +92,6 @@ class _HomeState extends State<Home> {
             String() => null,
           },
           floatingActionButton: const NavBarImageButton(),
-/*           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked, */
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: _currentIndex,
