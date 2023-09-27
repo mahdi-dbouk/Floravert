@@ -94,4 +94,20 @@ class AuthProvider extends ChangeNotifier {
       print(e);
     }
   }
+
+  void logout() async {
+    try {
+      dynamic response =
+          await sendRequest('/user/logout', 'post', {"token": token}, token);
+
+      if (response['message']) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('token', '');
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
+
+    notifyListeners();
+  }
 }
