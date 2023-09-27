@@ -11,8 +11,14 @@ const scannedPlantSchema = new Schema({
         seasonality: {type: String, required: false},
         toxicity: {type: String, required: false},
         habitat: {type: String, required: false},
-        uses: {type: String, required: false},
+        usecase: {type: String, required: false},
+        status: {type: String, required: false},
     },
+
+    benefits : [{type:String, required: false}],
+
+    commonUses: [{type:String, required: false}],
+
     recipes: [{
         name: {type: String, required: true},
         ingredients: [{type: String, required: true}],
