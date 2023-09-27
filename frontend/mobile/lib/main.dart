@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobile/providers/product_provider.dart';
 import 'package:mobile/screens/chat.dart';
 import 'package:mobile/screens/contacts.dart';
 import 'package:mobile/screens/map_page.dart';
@@ -45,6 +46,9 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProvider(
           create: (context) => ScannedPlantProvider([]),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider([]),
         ),
       ],
       child: MaterialApp(
