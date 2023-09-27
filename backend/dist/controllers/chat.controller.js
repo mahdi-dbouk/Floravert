@@ -1,4 +1,15 @@
 import User from '../models/user.model.js';
+export const chatsHandler = (io) => {
+    io.on('connection', (socket) => {
+        console.log(`user: ${socket.id}`);
+        socket.on("test", (args) => {
+            console.log(args);
+        });
+        socket.on('disconnect', () => {
+            console.log(`${socket.id} disconnected`);
+        });
+    });
+};
 export const createContact = async (req, res) => {
     const _id = req.user._id;
     const { userId } = req.body;
@@ -17,5 +28,14 @@ export const createContact = async (req, res) => {
             erro: error
         });
     }
+};
+export const createMessage = async (req, res) => {
+    const _id = req.user._id;
+};
+export const getAllMessages = async (req, res) => {
+};
+export const deleteChat = async (req, res) => {
+};
+export const deleteContact = async (req, res) => {
 };
 //# sourceMappingURL=chat.controller.js.map
