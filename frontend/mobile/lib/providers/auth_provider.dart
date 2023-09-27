@@ -34,6 +34,7 @@ class AuthProvider extends ChangeNotifier {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', response['token']);
+        token = prefs.getString('token')!;
       } on Exception catch (e) {
         print(e);
       }
@@ -61,7 +62,6 @@ class AuthProvider extends ChangeNotifier {
       int age,
       io.File profilePicture) async {
     String base64Profile = await convertImageToBase64(profilePicture);
-    print(base64Profile);
 
     Map<String, dynamic> data = {
       "firstName": firstName,
@@ -75,7 +75,6 @@ class AuthProvider extends ChangeNotifier {
     };
 
     try {
-      print(data);
       dynamic response = await sendRequest('/user/register', 'post', data, '');
 
       user = User.fromJson(response['user']);
@@ -83,6 +82,7 @@ class AuthProvider extends ChangeNotifier {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', response['token']);
+        token = prefs.getString('token')!;
       } on Exception catch (e) {
         print(e);
       }
@@ -98,9 +98,22 @@ class AuthProvider extends ChangeNotifier {
 
       if (response['message']) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('token', '');
+        prefs.remove('token');
+        token = '';
       }
     } on Exception catch (e) {
+      print(e);
+    }
+
+    notifyListeners();
+  }
+
+  void becomeTrader() async {
+    try {
+      dynamic response =
+          await sendRequest('/user/account/trader', 'post', {}, token);
+      user = User.fromJson(response['user']);
+    } catch (e) {
       print(e);
     }
 
