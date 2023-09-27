@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/screens/market.dart';
-import 'package:mobile/screens/threads.dart';
 import 'package:mobile/widgets/custom_appbar.dart';
 import 'package:mobile/screens/home_page.dart';
 import 'package:mobile/widgets/take_photo_button.dart';
@@ -18,7 +17,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Widget> navigationOptions = [
     const HomePage(authUserModel: null, scannedPlantModel: null),
-    const Threads(),
     const Market(),
   ];
 
@@ -43,17 +41,17 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(200),
                               border:
                                   Border.all(color: Colors.yellow, width: 2)),
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 40,
                             backgroundImage: NetworkImage(
-                                'https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'),
+                                authUserModel.user.pictureUrl ?? ""),
                           ),
                         ),
                       ),
                       TextButton(
                           onPressed: () {},
-                          child: const Text(
-                            "username",
+                          child: Text(
+                            authUserModel.user.username ?? "username",
                             style: TextStyle(color: Colors.white, fontSize: 22),
                           )),
                     ],
@@ -90,7 +88,6 @@ class _HomeState extends State<Home> {
             'home' => HomePage(
                 authUserModel: authUserModel,
                 scannedPlantModel: scannedPlantModel),
-            'threads' => const Threads(),
             'market' => const Market(),
             String() => null,
           },
@@ -118,12 +115,6 @@ class _HomeState extends State<Home> {
                       Icon(Icons.store, size: 28, color: Colors.grey.shade400),
                   activeIcon: Icon(Icons.store,
                       size: 28, color: Theme.of(context).primaryColor)),
-              BottomNavigationBarItem(
-                  label: 'Thread',
-                  icon: Icon(Icons.post_add,
-                      size: 28, color: Colors.grey.shade400),
-                  activeIcon: Icon(Icons.post_add,
-                      size: 28, color: Theme.of(context).primaryColor))
             ],
             showSelectedLabels: false,
             showUnselectedLabels: false,
@@ -146,8 +137,6 @@ String _loadWidget(int currentIndex) {
       return 'map';
     case 2:
       return 'market';
-    case 3:
-      return 'threads';
     default:
       return 'home';
   }
