@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/textinput.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,14 +70,45 @@ class _AddProductFormState extends State<AddProductForm> {
                   ))
             ],
           ),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              height: 300,
-              padding: EdgeInsets.zero,
-              child: Image.asset(
-                './assets/placeholder-square.png',
-                fit: BoxFit.cover,
-              )),
+          (selectedImages.length != 0)
+              ? CarouselSlider.builder(
+                  itemCount: selectedImages.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final File image = selectedImages[index];
+                    return Container(
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 2))
+                      ]),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      padding: EdgeInsets.zero,
+                      child: Image.file(
+                        image,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  },
+                  options: CarouselOptions(
+                      viewportFraction: 0.8,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      height: 300,
+                      aspectRatio: 1 / 1,
+                      enableInfiniteScroll: false))
+              : Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 300,
+                  padding: EdgeInsets.zero,
+                  child: Image.asset(
+                    './assets/placeholder-square.png',
+                    fit: BoxFit.cover,
+                  )),
           const SizedBox(
             height: 20,
           ),
@@ -91,16 +123,19 @@ class _AddProductFormState extends State<AddProductForm> {
             height: 20,
           ),
           TextInput(
+              maxLines: 1,
               controller: TextEditingController(),
               label: "Title",
               placeholder: "Title",
               isHidden: false),
           TextInput(
+              maxLines: 6,
               controller: TextEditingController(),
               label: "Desciption",
               placeholder: "Description",
               isHidden: false),
           TextInput(
+              maxLines: 1,
               controller: TextEditingController(),
               label: "Quantity",
               placeholder: "Quantity",
