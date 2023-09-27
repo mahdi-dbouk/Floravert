@@ -13,9 +13,15 @@ class HorizontallyScrollableSection extends StatefulWidget {
 
 class _HorizontallyScrollableSectionState
     extends State<HorizontallyScrollableSection> {
+  bool dataFound = false;
   @override
   void initState() {
     super.initState();
+    if (widget.items.isEmpty) {
+      dataFound = false;
+    } else {
+      dataFound = true;
+    }
   }
 
   @override
@@ -24,18 +30,20 @@ class _HorizontallyScrollableSectionState
       height: 200,
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: widget.items.length,
-            separatorBuilder: (context, _) => const SizedBox(
-              width: 14,
-            ),
-            itemBuilder: (context, index) => HomeItemCard(
-              item: widget.items[index],
-              commonName: widget.items[index].commonName!,
-              url: widget.items[index].image!,
-            ),
-          )),
+          child: (dataFound)
+              ? ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.items.length,
+                  separatorBuilder: (context, _) => const SizedBox(
+                    width: 14,
+                  ),
+                  itemBuilder: (context, index) => HomeItemCard(
+                    item: widget.items[index],
+                    commonName: widget.items[index].commonName!,
+                    url: widget.items[index].image!,
+                  ),
+                )
+              : const Center(child: Text("Nothing here yet :("))),
     );
   }
 }
