@@ -5,13 +5,15 @@ class TextInput extends StatefulWidget {
   final String label;
   final String placeholder;
   final bool isHidden;
+  final int maxLines;
 
   const TextInput(
       {super.key,
       required this.controller,
       required this.label,
       required this.placeholder,
-      required this.isHidden});
+      required this.isHidden,
+      required this.maxLines});
 
   @override
   State<TextInput> createState() => _TextInputState();
@@ -27,6 +29,7 @@ class _TextInputState extends State<TextInput> {
           children: [
             const SizedBox(height: 5),
             TextField(
+              maxLines: widget.maxLines,
               controller: widget.controller,
               obscureText: widget.isHidden ? _obscureText : !_obscureText,
               decoration: InputDecoration(
