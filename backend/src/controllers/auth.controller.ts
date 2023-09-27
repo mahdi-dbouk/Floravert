@@ -7,6 +7,7 @@ import {validationResult} from 'express-validator';
 import { decodeThenSendToS3 } from '../utils/image.handler.js';
 import { AuthRequest, revokeToken } from '../middlewares/auth.middleware.js';
 
+
 const jwt : typeof jsonwebtoken = jsonwebtoken;
 
 export const login = async (req: Request, res: Response) => {
@@ -39,14 +40,14 @@ export const login = async (req: Request, res: Response) => {
         });
     }
 
-    const {hashedPassword:hashedPassword, _id, firstName, lastName, phone, picture_url, age, ...userInfo } = user.toJSON();
+    const {hashedPassword:hashedPassword, _id, firstName, lastName, ...userInfo } = user.toJSON();
 
     const secret : Secret = process.env.JWT_SECRET_KEY;
     const token = jwt.sign({_id, firstName, lastName, email}, secret);
 
     res.send({
         token,
-        user: userInfo
+        user: {_id, firstName, lastName, ...userInfo}
     });
 }
 
@@ -60,7 +61,7 @@ export const register = async (req: Request, res: Response) => {
         });
     }
     //extract fields from request body
-    const {firstName, lastName, email, password, phone, age, base64Image } = req.body;
+    const {firstName, lastName,username, email, password, phone, age, base64Image } = req.body;
 
     //check if user exists
     const userExists = await User.findOne({email});
@@ -75,6 +76,7 @@ export const register = async (req: Request, res: Response) => {
         const user = new User({
             firstName,
             lastName,
+            username,
             email,
             hashedPassword: await bcrypt.hash(password, 10),
             age,
@@ -93,6 +95,8 @@ export const register = async (req: Request, res: Response) => {
         const {_id, picture_url} = userData;
         const secret : Secret = process.env.JWT_SECRET_KEY;
         const token = jwt.sign({_id, firstName, lastName, email}, secret);
+
+        const {hashedPassword:hashedPassword, ...userInfo} = user.toJSON();
         return res.status(201).json({
             message: "created successfully",
             token: {
@@ -102,11 +106,13 @@ export const register = async (req: Request, res: Response) => {
             data: {
                 firstName,
                 lastName,
+                username,
                 email,
                 phone,
                 age,
                 picture_url
-            }
+            },
+            user: userInfo
         });
 
     } catch (error) {
