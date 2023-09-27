@@ -17,10 +17,8 @@ class AuthProvider extends ChangeNotifier {
     List<int> imageBytes = await imageFile.readAsBytes();
     String base64Image = base64Encode(imageBytes);
 
-    // Get the image file extension
     String extension = imageFile.path.split('.').last;
 
-    // Append the image type in the base64 string
     String base64WithExtension = 'data:image/$extension;base64,$base64Image';
 
     return base64WithExtension;
@@ -43,8 +41,6 @@ class AuthProvider extends ChangeNotifier {
       try {
         Provider.of<ScannedPlantProvider>(ctx, listen: false).setScannedPlants(
             List<ScannedPlant>.from(user.scannedPlants ?? []));
-/*         Provider.of<ProductProvider>(ctx, listen: false)
-            .setProducts(List<Product>.from(user.products ?? [])); */
       } on Exception catch (e) {
         print(e);
       }
