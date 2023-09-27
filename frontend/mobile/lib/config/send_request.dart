@@ -6,12 +6,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String baseUrl = dotenv.env['BASE_URL'] ?? '';
 
-final options = BaseOptions(
-  baseUrl: baseUrl,
-);
-
-Future<dynamic> sendRequest(
-    String route, String method, Map<String, dynamic> payload) async {
+Future<dynamic> sendRequest(String route, String method,
+    Map<String, dynamic>? payload, String? token) async {
+  final options = BaseOptions(baseUrl: baseUrl, headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer $token",
+  });
   var dio = Dio(options);
   dynamic responseData;
   Response response;
