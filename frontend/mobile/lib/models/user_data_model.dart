@@ -8,6 +8,7 @@ class User {
   String? id;
   String? firstName;
   String? lastName;
+  String? username;
   String? email;
   int? age;
   String? phone;
@@ -15,7 +16,7 @@ class User {
   bool? isTrader;
   List<Post>? posts;
   List<ScannedPlant>? scannedPlants;
-  List<Message>? messages;
+  List<MessageModel>? messages;
   List<String>? followers;
   List<String>? followed;
   List<Contact>? contacts;
@@ -25,6 +26,7 @@ class User {
       {this.id,
       this.firstName,
       this.lastName,
+      this.username,
       this.email,
       this.age,
       this.phone,
@@ -42,6 +44,7 @@ class User {
     id = json['_id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
+    username = json['username'];
     email = json['email'];
     age = json['age'];
     phone = json['phone'];
@@ -60,9 +63,9 @@ class User {
       });
     }
     if (json['messages'] != null) {
-      messages = <Message>[];
+      messages = <MessageModel>[];
       json['messages'].forEach((v) {
-        messages!.add(Message.fromJson(v));
+        messages!.add(MessageModel.fromJson(v));
       });
     }
     followers =
@@ -88,6 +91,7 @@ class User {
     data['_id'] = id;
     data['firstName'] = firstName;
     data['lastName'] = lastName;
+    data['username'] = username;
     data['email'] = email;
     data['age'] = age;
     data['phone'] = phone;
