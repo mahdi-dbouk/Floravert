@@ -101,7 +101,7 @@ class _AddProductFormState extends State<AddProductForm> {
                       viewportFraction: 0.8,
                       enlargeCenterPage: true,
                       autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 3),
                       height: 300,
                       aspectRatio: 1 / 1,
                       enableInfiniteScroll: false))
