@@ -47,7 +47,7 @@ class _SetupState extends State<Setup> {
         ),
       );
     }
-    final String? fullName = arguments!['fullName'];
+    final String? fullName = arguments!['fullname'];
     final String? email = arguments['email'];
     final String? password = arguments['password'];
     return Consumer<AuthProvider>(
@@ -148,7 +148,7 @@ class _SetupState extends State<Setup> {
                 child: DateTimeField(
                   controller: dateTimeFieldInputController,
                   format: DateFormat('d/M/y'),
-                  initialValue: DateTime.now(),
+                  initialValue: DateTime(2005),
                   readOnly: true,
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(
@@ -179,9 +179,9 @@ class _SetupState extends State<Setup> {
                   onShowPicker: (context, currentValue) {
                     return showDatePicker(
                         context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2005),
-                        lastDate: DateTime.now());
+                        initialDate: DateTime(2000),
+                        firstDate: DateTime(1970),
+                        lastDate: DateTime(2005));
                   },
                 ),
               ),
@@ -229,7 +229,25 @@ class _SetupState extends State<Setup> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      List<String> fullNameList = fullName!.split(' ');
+                      int age = calculateAge(dateTimeFieldInputController.text);
+                      try {
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .register(
+                                fullNameList[0],
+                                fullNameList[1],
+                                userNameFieldInputController.text,
+                                email!,
+                                password!,
+                                phoneNumber,
+                                age,
+                                _image!);
+                        Navigator.of(context).popAndPushNamed('/home');
+                      } catch (e) {
+                        setState(() {});
+                      }
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(
                           Theme.of(context).colorScheme.primary),
@@ -248,5 +266,20 @@ class _SetupState extends State<Setup> {
             ])),
           )),
     );
+  }
+
+  int calculateAge(String birthDateString) {
+    DateTime currentDate = DateTime.now();
+    DateFormat format = DateFormat('M/d/yyyy');
+    DateTime birthDate = format.parse(birthDateString);
+    int age = currentDate.year - birthDate.year;
+
+    if (currentDate.month < birthDate.month ||
+        (currentDate.month == birthDate.month &&
+            currentDate.day < birthDate.day)) {
+      age--;
+    }
+
+    return age;
   }
 }
