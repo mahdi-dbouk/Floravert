@@ -14,7 +14,9 @@ class _MarketActionButtonState extends State<MarketActionButton> {
       height: 60,
       width: 60,
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/add/product');
+        },
         backgroundColor: Colors.amber,
         shape: const CircleBorder(),
         child: const Icon(
