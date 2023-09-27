@@ -11,7 +11,6 @@ class ProductProvider extends ChangeNotifier {
 
   void setProducts(List<Product> plants) {
     _products = products;
-    notifyListeners();
   }
 
   void getAllProducts() async {
@@ -19,8 +18,14 @@ class ProductProvider extends ChangeNotifier {
     String? token = prefs.getString('token');
     try {
       dynamic response = await sendRequest('/user/products', 'get', {}, token);
+      List<Product> products = [];
+      response['data'].forEach((v) {
+        products.add(Product.fromJson(v));
+      });
+      _products = products;
     } catch (e) {
       print(e);
     }
+    notifyListeners();
   }
 }
