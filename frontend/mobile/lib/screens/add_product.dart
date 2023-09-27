@@ -14,7 +14,11 @@ class AddProductForm extends StatefulWidget {
 
 class _AddProductFormState extends State<AddProductForm> {
   String selectedOption = 'natural';
-
+  final TextEditingController _titleInputController = TextEditingController();
+  final TextEditingController _descriptionInputController =
+      TextEditingController();
+  final TextEditingController _quantityInputController =
+      TextEditingController();
   List<File> selectedImages = [];
 
   Future getImages() async {
@@ -124,19 +128,19 @@ class _AddProductFormState extends State<AddProductForm> {
           ),
           TextInput(
               maxLines: 1,
-              controller: TextEditingController(),
+              controller: _titleInputController,
               label: "Title",
               placeholder: "Title",
               isHidden: false),
           TextInput(
               maxLines: 6,
-              controller: TextEditingController(),
+              controller: _descriptionInputController,
               label: "Desciption",
               placeholder: "Description",
               isHidden: false),
           TextInput(
               maxLines: 1,
-              controller: TextEditingController(),
+              controller: _quantityInputController,
               label: "Quantity",
               placeholder: "Quantity",
               isHidden: false),
