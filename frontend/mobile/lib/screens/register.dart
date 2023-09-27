@@ -83,21 +83,25 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextInput(
+                    maxLines: 1,
                     controller: _fullNameInputController,
                     label: "Full Name",
                     placeholder: "First Name",
                     isHidden: false),
                 TextInput(
+                    maxLines: 1,
                     controller: _emailInputController,
                     label: "Email",
                     placeholder: "Email",
                     isHidden: false),
                 TextInput(
+                    maxLines: 1,
                     controller: _passwordInputController,
                     label: "Password",
                     placeholder: "Password",
                     isHidden: true),
                 TextInput(
+                    maxLines: 1,
                     controller: _confirmPasswordInputController,
                     label: "Confirm Password",
                     placeholder: "Confirm Password",
