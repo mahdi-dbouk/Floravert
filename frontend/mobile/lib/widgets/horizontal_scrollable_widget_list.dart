@@ -43,7 +43,7 @@ class _HorizontallyScrollableSectionState
                     url: widget.items[index].image!,
                   ),
                 )
-              : const Center(child: Text("Nothing here yet :("))),
+              : Center(child: Text("Nothing here yet :("))),
     );
   }
 }
