@@ -1,12 +1,12 @@
-class Message {
+class MessageModel {
   String? sender;
   String? content;
   String? createdAt;
   String? updatedAt;
 
-  Message({this.sender, this.content, this.createdAt, this.updatedAt});
+  MessageModel({this.sender, this.content, this.createdAt, this.updatedAt});
 
-  Message.fromJson(Map<String, dynamic> json) {
+  MessageModel.fromJson(Map<String, dynamic> json) {
     sender = json['sender'];
     content = json['content'];
     createdAt = json['createdAt'];
