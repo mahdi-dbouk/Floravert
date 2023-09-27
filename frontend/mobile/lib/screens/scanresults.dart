@@ -32,7 +32,7 @@ class _ScannedResultState extends State<ScannedResult> {
                     height: 10,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
                           onPressed: () {
@@ -43,7 +43,7 @@ class _ScannedResultState extends State<ScannedResult> {
                             children: [
                               Icon(
                                 Icons.arrow_back,
-                                color: Colors.black,
+                                color: Colors.black87,
                                 size: 32.0,
                               ),
                               SizedBox(
@@ -51,9 +51,27 @@ class _ScannedResultState extends State<ScannedResult> {
                               ),
                               Text("back",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16))
+                                      color: Colors.black87, fontSize: 16))
                             ],
-                          ))
+                          )),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.share_location_rounded,
+                                color: Colors.black87,
+                                size: 32,
+                              )),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.share_sharp,
+                                color: Colors.black87,
+                                size: 28,
+                              )),
+                        ],
+                      )
                     ],
                   ),
                   Container(
@@ -111,41 +129,20 @@ class _ScannedResultState extends State<ScannedResult> {
                           color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    width: MediaQuery.of(context).size.width,
-                    height: 80,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text.rich(TextSpan(children: [
-                          const TextSpan(
-                              text: "Common Name: ",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold)),
-                          TextSpan(
-                              text: "Common Plant Name",
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold)),
-                        ])),
-                        Text.rich(TextSpan(children: [
-                          const TextSpan(
-                              text: "Botanical Name: ",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold)),
-                          TextSpan(
-                              text: "Genus species",
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.italic)),
-                        ])),
-                      ],
-                    ),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 20,
+                      child: const Center(
+                        child: Text(
+                          "Botaical Name",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 20,
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -165,39 +162,74 @@ class _ScannedResultState extends State<ScannedResult> {
                         children: [
                           Card(
                             color: primary[200],
-                            child: Row(
-                              children: [
-                                Icon(Icons.food_bank_rounded),
-                                Container(
-                                  width: 180,
-                                  height: 80,
-                                  child: const Column(
-                                    children: [
-                                      Text(
-                                        "Title",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text("content")
-                                    ],
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              width: 180,
+                              height: 80,
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.food_bank_rounded,
+                                    size: 36,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Edibility",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Card(
                             color: primary[200],
                             child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               width: 180,
                               height: 80,
-                              child: const Column(
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "Title",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                  Icon(
+                                    Icons.emergency_outlined,
+                                    size: 36,
                                   ),
-                                  Text("content")
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Toxicity",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -211,16 +243,36 @@ class _ScannedResultState extends State<ScannedResult> {
                           Card(
                             color: primary[200],
                             child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               width: 180,
                               height: 80,
-                              child: const Column(
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "Title",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                  Icon(
+                                    Icons.forest,
+                                    size: 36,
                                   ),
-                                  Text("content")
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Habitat",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -228,16 +280,116 @@ class _ScannedResultState extends State<ScannedResult> {
                           Card(
                             color: primary[200],
                             child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               width: 180,
                               height: 80,
-                              child: const Column(
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "Title",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                  Icon(
+                                    Icons.emoji_food_beverage_rounded,
+                                    size: 36,
                                   ),
-                                  Text("content")
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Use",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Card(
+                            color: primary[200],
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              width: 180,
+                              height: 80,
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.severe_cold_rounded,
+                                    size: 36,
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Seasonality",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            color: primary[200],
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              width: 180,
+                              height: 80,
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.warning_amber_rounded,
+                                    size: 36,
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Status",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("content")
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -245,6 +397,91 @@ class _ScannedResultState extends State<ScannedResult> {
                         ],
                       )
                     ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Text(
+                      "Description",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Text.rich(
+                        TextSpan(
+                          style: TextStyle(fontSize: 18),
+                          text:
+                              "sdksdldsksdlsdsdkflsdkdskldsdskljsdkldsjdslkjflksdjlksdfjsldkjfklsdjslkfjsdlkfjsklfjskfjslfksdjflksjflsdkfjlsfjlskdkfjlsfjsklfjsdklfjsklfjslkfjsklfsjfklsjflsdkfjslkfjsdlkjfsldkfjslkjfskfsfj",
+                        ),
+                        textDirection: TextDirection.ltr,
+                      )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Text(
+                      "Recipes",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 350,
+                    child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: primary[200],
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: const ListTile(
+                                  title: Text("Recipe Name"),
+                                  subtitle: Row(
+                                    children: [
+                                      Text("ingredient 1"),
+                                      Text("ingredient 1"),
+                                      Text("ingredient 1"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                        separatorBuilder: (context, index) => const SizedBox(
+                              height: 10,
+                            ),
+                        itemCount: 3),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Text(
+                      "Regions",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 400,
+                    child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => const ListTile(
+                              title: Text("Region"),
+                            ),
+                        separatorBuilder: (context, index) => const SizedBox(
+                              height: 10,
+                            ),
+                        itemCount: 3),
                   )
                 ],
               )
