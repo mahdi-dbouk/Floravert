@@ -28,7 +28,7 @@ chatsHandler(io);
 
 app.use(express.json({limit: '50mb'}));
 
-server.listen(PORT, () => {
+server.listen({port:PORT, host:'192.168.0.103'}, () => {
     console.log(`Server is listening on port ${PORT}`);
     console.log(`http://localhost:${PORT}`);
 });
