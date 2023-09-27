@@ -102,7 +102,7 @@ export const deleteProduct = async (req: AuthRequest, res: Response) => {
 
 export const updateProduct = async (req: AuthRequest, res: Response) => {
     const _id = req.user._id;
-    const {productId, name, category, description, totalQuantity} = req.body;
+    const {productId, name, category, price, description, totalQuantity} = req.body;
 
     try {
 
@@ -112,6 +112,7 @@ export const updateProduct = async (req: AuthRequest, res: Response) => {
                 $set: {
                     'products.$.name': name,
                     'products.$.category': category,
+                    'products.$.price': price,
                     'products.$.description': description,
                     'products.$.totalQuantity': totalQuantity,
 
