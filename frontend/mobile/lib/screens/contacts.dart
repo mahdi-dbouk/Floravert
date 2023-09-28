@@ -101,8 +101,9 @@ class _ContactsState extends State<Contacts> {
                       subtitle: Text(contacts[index]['last_message']!),
                       leading: CircleAvatar(
                         radius: 24,
-                        backgroundImage:
-                            NetworkImage(contacts[index]["picture_url"]!),
+                        backgroundImage: NetworkImage(contacts[index]
+                                ["picture_url"] ??
+                            "https://i.stack.imgur.com/y9DpT.jpg"),
                       ),
                       trailing: (int.parse(contacts[index]["number"]!) > 0)
                           ? Container(
