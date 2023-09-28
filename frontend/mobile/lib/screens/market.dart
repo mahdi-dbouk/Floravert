@@ -181,7 +181,11 @@ class _MarketState extends State<Market> {
                       border: Border(
                           bottom: BorderSide(width: 1, color: Colors.black26))),
                   child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/product', arguments: {
+                          "product": productModel.products[index]
+                        });
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: 120,
