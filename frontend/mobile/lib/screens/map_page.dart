@@ -81,7 +81,7 @@ Widget buildMarkerWidget(String imageUrl) {
           color: Colors.grey.withOpacity(0.8),
           spreadRadius: 3,
           blurRadius: 4,
-          offset: Offset(0, 2))
+          offset: const Offset(0, 2))
     ], shape: BoxShape.circle, border: Border.all(width: 2, color: Colors.red)),
     child: CircleAvatar(
       radius: 30,
