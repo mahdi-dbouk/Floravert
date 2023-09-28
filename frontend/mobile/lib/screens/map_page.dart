@@ -85,7 +85,8 @@ Widget buildMarkerWidget(String imageUrl) {
     ], shape: BoxShape.circle, border: Border.all(width: 2, color: Colors.red)),
     child: CircleAvatar(
       radius: 30,
-      backgroundImage: NetworkImage(imageUrl),
+      backgroundImage:
+          NetworkImage(imageUrl ?? "https://i.stack.imgur.com/y9DpT.jpg"),
     ),
   );
 }
