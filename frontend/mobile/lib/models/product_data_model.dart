@@ -24,14 +24,15 @@ class Product {
     traderName = json['traderName'];
     traderEmail = json['email'];
     phone = json['phone'];
-    name = json['product']['name'];
-    profilePic = json['traderProfilePic'];
-    category = json['product']['category'];
-    price = json['product']['price'];
-    ratings = json['product']['ratings'].cast<int>() ?? [];
-    images = json['product']['images'].cast<String>() ?? [];
-    description = json['product']['description'];
-    totalQuantity = json['product']['totalQuantity'];
+    name = json['product']['name'] ?? '';
+    profilePic = json['traderProfilePic'] ?? '';
+    category = json['product']['category'] ?? '';
+    price = json['product']['price'] ?? '';
+    ratings = (json['product']['ratings'] as List<dynamic>?)?.cast<int>() ?? [];
+    images =
+        (json['product']['images'] as List<dynamic>?)?.cast<String>() ?? [];
+    description = json['product']['description'] ?? '';
+    totalQuantity = json['product']['totalQuantity'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
