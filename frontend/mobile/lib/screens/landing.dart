@@ -72,7 +72,7 @@ class Landing extends StatelessWidget {
                 if (kDebugMode) {
                   print("clicked");
                 }
-                Navigator.of(context).pushNamed('/register');
+                Navigator.of(context).pushReplacementNamed('/register');
               },
               style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.black),
