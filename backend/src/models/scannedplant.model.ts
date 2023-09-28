@@ -25,7 +25,8 @@ const scannedPlantSchema = new Schema({
         category: {type: String, required: true} 
     }],
     regions: [{ type: String, required: false }],
-});
+    scanLocation: {name: {type: String, required: true}, lat: {type: Number, required: true}, lng: {type:Number, required: true}}}
+);
 
 const ScannedPlant = model('ScannedPlant', scannedPlantSchema);
 
