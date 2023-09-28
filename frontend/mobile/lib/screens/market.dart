@@ -25,8 +25,6 @@ class _MarketState extends State<Market> {
   @override
   void initState() {
     super.initState();
-
-    // Call getAllProducts here to fetch the products only once
     Provider.of<ProductProvider>(context, listen: false).getAllProducts();
   }
 
@@ -34,7 +32,6 @@ class _MarketState extends State<Market> {
   Widget build(BuildContext context) {
     return Consumer<ProductProvider>(
         builder: (BuildContext context, productModel, child) {
-      print(productModel.products[0].images ?? "not found");
       return Column(
         children: [
           Padding(
@@ -205,9 +202,8 @@ class _MarketState extends State<Market> {
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
                                             image: NetworkImage(
-                                                productModel.products[index]
-                                                        .images![0] ??
-                                                    "https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-square.png",
+                                                productModel
+                                                    .products[index].images![0],
                                                 scale: 1),
                                             fit: BoxFit.cover,
                                             scale: 1)),
@@ -247,37 +243,7 @@ class _MarketState extends State<Market> {
                             ),
                             Expanded(
                               flex: 3,
-                              child: Container(
-                                padding: const EdgeInsets.only(right: 5),
-                                height: 100,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    (true)
-                                        ? Container(
-                                            padding: const EdgeInsets.all(6),
-                                            decoration: BoxDecoration(
-                                                color: Colors.green[200],
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: const Text(
-                                              "available",
-                                              style: TextStyle(fontSize: 10),
-                                            ))
-                                        : Container(
-                                            padding: const EdgeInsets.all(6),
-                                            decoration: BoxDecoration(
-                                                color: Colors.red[200],
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: const Text(
-                                              "Out of Stock",
-                                              style: TextStyle(fontSize: 10),
-                                            ))
-                                  ],
-                                ),
-                              ),
+                              child: Container(),
                             )
                           ],
                         ),
