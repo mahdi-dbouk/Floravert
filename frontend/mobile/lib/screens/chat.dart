@@ -58,7 +58,8 @@ class _ChatsState extends State<Chats> {
                   ),
                   CircleAvatar(
                     radius: 24,
-                    backgroundImage: NetworkImage(contact["picture_url"]!),
+                    backgroundImage: NetworkImage(contact["picture_url"] ??
+                        "https://i.stack.imgur.com/y9DpT.jpg"),
                   ),
                 ],
               )),
