@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
                               onPressed: () {},
                               child: Text(
                                 authUserModel.user.username ?? "username",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 22),
                               )),
                         ],
@@ -89,14 +89,14 @@ class _HomeState extends State<Home> {
                         onTap: () {
                           authUserModel.becomeTrader();
                         },
-                        leading: (!authUserModel.user.isTrader!)
+                        leading: (!(authUserModel.user.isTrader ?? true))
                             ? const Icon(
                                 Icons.stars_rounded,
                                 color: Colors.amber,
                                 size: 30,
                               )
                             : const Text(''),
-                        title: (authUserModel.user.isTrader!)
+                        title: (authUserModel.user.isTrader ?? false)
                             ? const Text(
                                 "",
                                 style: TextStyle(
