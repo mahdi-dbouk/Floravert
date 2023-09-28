@@ -37,8 +37,8 @@ class _MapPageState extends State<MapPage> {
     return Stack(children: [
       FlutterMap(
         options: MapOptions(
-            center: LatLng(
-                _locationData.latitude ?? 0.0, _locationData.longitude ?? 0.0),
+            center: LatLng(_locationData.latitude ?? 45.4408,
+                _locationData.longitude ?? 12.3155),
             zoom: 10.0),
         nonRotatedChildren: [
           RichAttributionWidget(
