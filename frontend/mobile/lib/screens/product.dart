@@ -72,7 +72,7 @@ class _ProductViewState extends State<ProductView> {
                           height: 200,
                           padding: EdgeInsets.zero,
                           child: Image.network(
-                            image,
+                            image ?? "https://i.stack.imgur.com/y9DpT.jpg",
                             fit: BoxFit.cover,
                           ),
                         );
@@ -256,7 +256,8 @@ class _ProductViewState extends State<ProductView> {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
-                              args['product'].profilePic,
+                              args['product'].profilePic ??
+                                  "https://i.stack.imgur.com/y9DpT.jpg",
                               scale: 1),
                         ),
                       ),
