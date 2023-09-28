@@ -10,7 +10,7 @@ import 'dart:io' as io;
 
 class AuthProvider extends ChangeNotifier {
   User user = User();
-  String token = '';
+  String? token = '';
   String firstname = 'user';
 
   Future<String> convertImageToBase64(io.File imageFile) async {
@@ -25,6 +25,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void login(String email, String password, BuildContext ctx) async {
+    final currentContext = ctx;
     try {
       dynamic response = await sendRequest(
           '/user/login', 'post', {"email": email, "password": password}, '');
@@ -34,16 +35,22 @@ class AuthProvider extends ChangeNotifier {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', response['token']);
-        token = prefs.getString('token')!;
+        token = prefs.getString('token');
+        if (token == null) {
+          throw Exception("Token is Null!");
+        }
+
+        print(token);
       } on Exception catch (e) {
         print(e);
       }
 
       try {
-        Provider.of<ScannedPlantProvider>(ctx, listen: false).setScannedPlants(
-            List<ScannedPlant>.from(user.scannedPlants ?? []));
-      } on Exception catch (e) {
-        print(e);
+        Provider.of<ScannedPlantProvider>(currentContext, listen: false)
+            .setScannedPlants(
+                List<ScannedPlant>.from(user.scannedPlants ?? []));
+      } on Exception {
+        rethrow;
       }
     } catch (e) {
       rethrow;
@@ -94,9 +101,9 @@ class AuthProvider extends ChangeNotifier {
   void logout() async {
     try {
       dynamic response =
-          await sendRequest('/user/logout', 'post', {"token": token}, token);
+          await sendRequest('/user/logout', 'get', {"token": token}, token);
 
-      if (response['message']) {
+      if (response['message'].isNotEmpty) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.remove('token');
         token = '';
