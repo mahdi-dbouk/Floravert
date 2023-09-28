@@ -1,9 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Landing extends StatelessWidget {
+class Landing extends StatefulWidget {
   const Landing({super.key});
 
+  @override
+  State<Landing> createState() => _LandingState();
+}
+
+void initializeSharedPreferences() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool('isStarted', true);
+}
+
+class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +79,7 @@ class Landing extends StatelessWidget {
             const Spacer(flex: 6),
             ElevatedButton(
               onPressed: () {
-                if (kDebugMode) {
-                  print("clicked");
-                }
+                initializeSharedPreferences();
                 Navigator.of(context).pushReplacementNamed('/register');
               },
               style: const ButtonStyle(
