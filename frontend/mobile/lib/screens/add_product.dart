@@ -198,7 +198,15 @@ class _AddProductFormState extends State<AddProductForm> {
               height: 60,
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  productModel.createProduct(
+                      _titleInputController.text,
+                      _descriptionInputController.text,
+                      selectedOption,
+                      _quantityInputController.text,
+                      _priceInputController.text,
+                      selectedImages);
+                },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                         Theme.of(context).colorScheme.primary)),
