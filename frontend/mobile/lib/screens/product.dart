@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -13,10 +11,13 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView> {
   int activeIndex = 0;
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments;
     final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
+    final String description = args?['product'].description;
+    final double price = args?['product'].price;
 
     return Scaffold(
         body: SafeArea(
@@ -64,7 +65,7 @@ class _ProductViewState extends State<ProductView> {
                                     color: Colors.grey.withOpacity(0.5),
                                     spreadRadius: 2,
                                     blurRadius: 5,
-                                    offset: Offset(0, 2))
+                                    offset: const Offset(0, 2))
                               ]),
                           margin: const EdgeInsets.symmetric(horizontal: 5),
                           width: MediaQuery.of(context).size.width,
@@ -112,32 +113,171 @@ class _ProductViewState extends State<ProductView> {
         const SizedBox(
           height: 20,
         ),
-        Expanded(child: Container()),
+        Expanded(
+            child: Container(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.8),
+                    spreadRadius: 3,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2))
+              ]),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      args?['product'].name,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                Text('\$$price / Kg',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Center(
+                    child: Text(
+                  "Select the quantity in (Kg)",
+                  style: TextStyle(color: Colors.grey),
+                )),
+                const SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            quantity--;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.remove,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                Theme.of(context).colorScheme.primary)),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '$quantity',
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            quantity++;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                Theme.of(context).colorScheme.primary)),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Description",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  '$description',
+                  textAlign: TextAlign.justify,
+                )
+              ],
+            ),
+          ),
+        )),
         Container(
             width: MediaQuery.of(context).size.width,
-            height: 100,
-            padding: EdgeInsets.only(top: 5),
+            height: 180,
+            padding: const EdgeInsets.only(top: 5),
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(
                     top: BorderSide(
                         color: Theme.of(context).colorScheme.primary))),
-            child: ListTile(
-              title: Text(args!['product'].traderName),
-              trailing:
-                  ElevatedButton(onPressed: () {}, child: Text('Order Now')),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2)),
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundImage:
-                      NetworkImage(args?['product'].profilePic, scale: 1),
-                ),
-              ),
+            child: Column(
+              children: [
+                Expanded(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                        child: ListTile(
+                      title: Text(
+                        args!['product'].traderName,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: const Text(
+                          "Want to order? You can do so by contacting me."),
+                      leading: Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: Theme.of(context).colorScheme.primary,
+                                width: 2)),
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                              args['product'].profilePic,
+                              scale: 1),
+                        ),
+                      ),
+                    ))
+                  ],
+                )),
+                Expanded(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {},
+                        child: const Text("Send Order Message")),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Custom Message"))
+                  ],
+                ))
+              ],
             ))
       ],
     )));
