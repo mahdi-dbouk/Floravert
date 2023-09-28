@@ -6,6 +6,7 @@ import {check} from "express-validator";
 import { isTrader } from "../middlewares/trader.middleware.js";
 import { createProduct, deleteProduct, getAllProducts, updateProduct } from "../controllers/product.controller.js";
 import { getPlantData, identifyPlantByImage } from "../controllers/api.controller.js";
+import { getAllPlants } from "../controllers/plant.controller.js";
 
 let router : Router = Router();
 
@@ -33,6 +34,7 @@ router.post('/scanned/add', [
     check('base64Image').notEmpty().withMessage("base64 image is missing"),
 ], isAuthorized, addScanned);
 
+router.get('/scanned/get/all', isAuthorized, getAllPlants);
 
 router.post('/posts/add', [
     check('content').notEmpty().withMessage("content must not be empty"),
