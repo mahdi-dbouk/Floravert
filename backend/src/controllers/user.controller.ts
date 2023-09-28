@@ -26,7 +26,8 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
         benefits,
         commonUses,
         recipes,
-        regions
+        regions,
+        scanLocation
 
     } = req.body;
 
@@ -44,7 +45,8 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
                     benefits: benefits,
                     commonUses: commonUses,
                     recipes:[...recipes],
-                    regions: regions
+                    regions: regions,
+                    scanLocation:scanLocation
                 }
             }
         },
