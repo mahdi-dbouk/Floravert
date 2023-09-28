@@ -1,6 +1,7 @@
 class Product {
   String? traderName;
   String? traderEmail;
+  String? profilePic;
   String? phone;
   String? name;
   String? category;
@@ -24,6 +25,7 @@ class Product {
     traderEmail = json['email'];
     phone = json['phone'];
     name = json['product']['name'];
+    profilePic = json['traderProfilePic'];
     category = json['product']['category'];
     price = json['product']['price'];
     ratings = json['product']['ratings'].cast<int>() ?? [];
