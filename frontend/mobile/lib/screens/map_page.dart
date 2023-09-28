@@ -57,9 +57,35 @@ class _MapPageState extends State<MapPage> {
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             userAgentPackageName: 'dev.fleaflet.flutter_map.example',
           ),
-          const MarkerLayer()
+          MarkerLayer(markers: [])
         ],
       ),
     ]);
   }
+}
+
+Marker buildMarker(LatLng coordinates, String imageUrl) {
+  return Marker(
+      point: coordinates,
+      builder: (context) => buildMarkerWidget(imageUrl),
+      width: 60,
+      height: 60);
+}
+
+Widget buildMarkerWidget(String imageUrl) {
+  return Container(
+    height: 100,
+    width: 100,
+    decoration: BoxDecoration(boxShadow: [
+      BoxShadow(
+          color: Colors.grey.withOpacity(0.8),
+          spreadRadius: 3,
+          blurRadius: 4,
+          offset: Offset(0, 2))
+    ], shape: BoxShape.circle, border: Border.all(width: 2, color: Colors.red)),
+    child: CircleAvatar(
+      radius: 30,
+      backgroundImage: NetworkImage(imageUrl),
+    ),
+  );
 }
