@@ -245,7 +245,7 @@ class _SetupState extends State<Setup> {
                                 phoneNumber,
                                 age,
                                 _image!);
-                        Navigator.of(context).popAndPushNamed('/home');
+                        Navigator.of(context).pushReplacementNamed('/');
                       } catch (e) {
                         setState(() {});
                       }
