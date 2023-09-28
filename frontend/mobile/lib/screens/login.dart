@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
                           setState(() {});
                         }
 
-                        Navigator.of(context).pushNamed('/');
+                        Navigator.of(context).pushReplacementNamed('/');
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(
