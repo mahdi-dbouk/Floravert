@@ -51,8 +51,9 @@ class _HomeState extends State<Home> {
                                           color: Colors.yellow, width: 2)),
                                   child: CircleAvatar(
                                     radius: 40,
-                                    backgroundImage: NetworkImage(
-                                        authUserModel.user.pictureUrl ?? ""),
+                                    backgroundImage: NetworkImage(authUserModel
+                                            .user.pictureUrl ??
+                                        "https://i.stack.imgur.com/y9DpT.jpg"),
                                   ),
                                 ),
                                 Positioned(
