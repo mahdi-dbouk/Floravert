@@ -19,6 +19,7 @@ class _AddProductFormState extends State<AddProductForm> {
       TextEditingController();
   final TextEditingController _quantityInputController =
       TextEditingController();
+  final TextEditingController _priceInputController = TextEditingController();
   List<File> selectedImages = [];
 
   Future getImages() async {
@@ -143,6 +144,12 @@ class _AddProductFormState extends State<AddProductForm> {
               controller: _quantityInputController,
               label: "Quantity",
               placeholder: "Quantity",
+              isHidden: false),
+          TextInput(
+              maxLines: 1,
+              controller: _priceInputController,
+              label: "Price",
+              placeholder: "Price",
               isHidden: false),
           const Center(
             child: Text(
