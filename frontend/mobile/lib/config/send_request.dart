@@ -23,7 +23,7 @@ Future<dynamic> sendRequest(String route, String method,
         response = await dio.post(route, data: json);
         break;
       case 'get':
-        response = await dio.get(route);
+        response = await dio.get(route, data: json);
       default:
         throw Exception(
             "Bad method -- Please consider using a proper http method");
