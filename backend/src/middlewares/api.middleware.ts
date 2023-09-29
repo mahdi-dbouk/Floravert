@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import FormData from 'form-data';
 
-export interface ScanedRequest extends Request {
+export interface ScanedRequest extends AuthRequest {
     plant?: {
         commonName: string,
         botanicalName: string,
