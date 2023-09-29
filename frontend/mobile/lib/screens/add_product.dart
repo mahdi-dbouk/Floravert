@@ -206,6 +206,7 @@ class _AddProductFormState extends State<AddProductForm> {
                       _quantityInputController.text,
                       _priceInputController.text,
                       selectedImages);
+                  Navigator.of(context).pop();
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
