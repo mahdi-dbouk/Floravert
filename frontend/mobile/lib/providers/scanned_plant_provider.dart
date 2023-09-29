@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/config/send_request.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
+import '../utils/image_handling.dart';
 
 class ScannedPlantProvider extends ChangeNotifier {
   List<ScannedPlant> _plants = [];
@@ -10,5 +14,27 @@ class ScannedPlantProvider extends ChangeNotifier {
   void setScannedPlants(List<ScannedPlant> plants) {
     _plants = plants;
     notifyListeners();
+  }
+
+  void sendScannedPhotoToServer(File? image) async {
+    if (image == null) {
+      throw Exception("Image is Null");
+    }
+    String base64Image = await Base64ImageHandler().convertToBase64(image);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    if (token == null) {
+      throw Exception("Token is Null!");
+    }
+
+    try {
+      dynamic response = await sendRequest(
+          '/user//scanned/apis/3rd_party/plantnet/generate',
+          'post',
+          {'base64Image': base64Image},
+          token);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
