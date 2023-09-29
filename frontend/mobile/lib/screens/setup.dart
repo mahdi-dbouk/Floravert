@@ -135,7 +135,7 @@ class _SetupState extends State<Setup> {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 30,
               ),
               TextInput(
                 controller: userNameFieldInputController,
