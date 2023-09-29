@@ -7,8 +7,8 @@ import FormData from 'form-data';
 
 export interface ScanedRequest extends Request {
     plant?: {
-        commonName: String,
-        botanicalName: String,
+        commonName: string,
+        botanicalName: string,
     }
 }
 
@@ -46,7 +46,7 @@ export async function identifyPlantByImage(req: AuthRequest, res: Response, next
             botanicalName
         };
 
-        
+
 
         next();
 
