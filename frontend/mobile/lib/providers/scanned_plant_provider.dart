@@ -29,7 +29,7 @@ class ScannedPlantProvider extends ChangeNotifier {
 
     try {
       dynamic response = await sendRequest(
-          '/user//scanned/apis/3rd_party/plantnet/generate',
+          '/user/scanned/apis/3rd_party/plantnet/generate',
           'post',
           {'base64Image': base64Image},
           token);
