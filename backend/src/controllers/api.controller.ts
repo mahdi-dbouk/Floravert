@@ -1,10 +1,7 @@
-import axios from 'axios';
 import {openai} from '../config/openai.js';
 import { AuthRequest } from '../middlewares/auth.middleware.js';
-import {Response, response} from 'express';
-import fs from 'fs';
-import path from 'path';
-import FormData from 'form-data';
+import { ScanedRequest } from '../middlewares/api.middleware.js';
+import {Response} from 'express';
 
 const createCustomPrompt = (commonName:string, botanicalName: string) => {
     return `generate only in json format for a plant called "${commonName}", with scientific name "${botanicalName}
@@ -17,45 +14,8 @@ const createCustomPrompt = (commonName:string, botanicalName: string) => {
     an array of regions it grows in. a region is defined by a name. only a name`;
 }
 
-
-  export async function identifyPlantByImage(req: AuthRequest, res: Response) {
-      const {base64Image} = req.body;
-      let form = new FormData();
-
-    try {
-        let [format, base64ImageData] = base64Image.split(';base64,');
-        const contentType = format.split(':')[1];
-        format = format.split('/').pop();
-        console.log(format);
-        const filename = `image_${Date.now()}.${format}`;
-        const imageBuffer: Buffer = Buffer.from(base64ImageData, 'base64');
-
-        try {
-            const tempImagePath = path.join('../assets/', filename);
-            fs.writeFileSync(tempImagePath, imageBuffer);
-            form.append('images', fs.createReadStream(tempImagePath));
-
-        } catch (error) {
-            console.log(error);
-        }
-    
-        const response = await axios.post(`https://my-api.plantnet.org/v2/identify/all?include-related-images=false&no-reject=false&lang=en&api-key=${process.env.PLANTNET_API_KEY}`, form, {
-            headers: form.getHeaders()
-        });
-    
-        return res.status(200).json({
-            commonName: response.data.results[0].commonNames[0],
-            botanicalName: response.data.results[0].species.scientificNameWithoutAuthor
-        })
-      } catch (error) {
-        return res.status(response.statusCode).json({
-            error: error
-        })
-      }
-  }
-
-export const getPlantData = async (req: AuthRequest, res: Response) => {
-    const {commonName, botanicalName} = req.body;
+export const getPlantData = async (req: ScanedRequest, res: Response) => {
+    const {commonName, botanicalName} = req.plant;
     let response = null;
 
     try {
