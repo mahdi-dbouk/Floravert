@@ -24,8 +24,7 @@ class AuthProvider extends ChangeNotifier {
     return base64WithExtension;
   }
 
-  void login(String email, String password, BuildContext ctx) async {
-    final currentContext = ctx;
+  void login(String email, String password) async {
     try {
       dynamic response = await sendRequest(
           '/user/login', 'post', {"email": email, "password": password}, '');
@@ -43,14 +42,6 @@ class AuthProvider extends ChangeNotifier {
         print(token);
       } on Exception catch (e) {
         print(e);
-      }
-
-      try {
-        Provider.of<ScannedPlantProvider>(currentContext, listen: false)
-            .setScannedPlants(
-                List<ScannedPlant>.from(user.scannedPlants ?? []));
-      } on Exception {
-        rethrow;
       }
     } catch (e) {
       rethrow;
