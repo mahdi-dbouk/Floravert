@@ -5,8 +5,9 @@ import {isAuthorized} from '../middlewares/auth.middleware.js';
 import {check} from "express-validator";
 import { isTrader } from "../middlewares/trader.middleware.js";
 import { createProduct, deleteProduct, getAllProducts, updateProduct } from "../controllers/product.controller.js";
-import { getPlantData, identifyPlantByImage } from "../controllers/api.controller.js";
+import { getPlantData} from "../controllers/api.controller.js";
 import { getAllPlants } from "../controllers/plant.controller.js";
+import { identifyPlantByImage } from "../middlewares/api.middleware.js";
 
 let router : Router = Router();
 
@@ -51,7 +52,6 @@ router.post('/trader/product/delete', isAuthorized, isTrader, deleteProduct);
 router.post('/trader/product/update', isAuthorized, isTrader, updateProduct);
 router.get('/products', isAuthorized, getAllProducts);
 
-router.post('/scanned/apis/3rd_party/openai/generate', isAuthorized, getPlantData);
-router.post('/scanned/apis/3rd_party/plantnet/generate', isAuthorized, identifyPlantByImage);
+router.post('/scanned/apis/3rd_party/openai/generate', isAuthorized, identifyPlantByImage, getPlantData);
 
 export default router;
