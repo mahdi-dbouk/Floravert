@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/auth_provider.dart';
+import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/screens/register.dart';
 import 'package:provider/provider.dart';
 import '/widgets/textinput.dart';
@@ -100,15 +102,20 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         try {
                           Provider.of<AuthProvider>(context, listen: false)
-                              .login(
-                                  emailInputController.text.toString(),
-                                  passwordInputController.text.toString(),
-                                  context);
+                              .login(emailInputController.text.toString(),
+                                  passwordInputController.text.toString());
+                          try {
+                            Provider.of<ScannedPlantProvider>(context,
+                                    listen: false)
+                                .setScannedPlants(List<ScannedPlant>.from(
+                                    authUserModel.user.scannedPlants ?? []));
+                            Navigator.of(context).pushReplacementNamed('/');
+                          } on Exception {
+                            rethrow;
+                          }
                         } catch (e) {
                           setState(() {});
                         }
-
-                        Navigator.of(context).pushReplacementNamed('/');
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(
