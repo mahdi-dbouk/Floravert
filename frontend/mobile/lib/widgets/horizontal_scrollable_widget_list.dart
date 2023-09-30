@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
+import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/widgets/home_item_card.dart';
 
 class HorizontallyScrollableSection extends StatefulWidget {
-  final List<ScannedPlant> items;
-  const HorizontallyScrollableSection({super.key, required this.items});
+  final ScannedPlantProvider scannedPlantModel;
+  const HorizontallyScrollableSection(
+      {super.key, required this.scannedPlantModel});
 
   @override
   State<HorizontallyScrollableSection> createState() =>
@@ -16,12 +18,12 @@ class _HorizontallyScrollableSectionState
   bool dataFound = false;
   @override
   void initState() {
-    super.initState();
-    if (widget.items.isEmpty) {
+    if (widget.scannedPlantModel.scannedPlants.isEmpty) {
       dataFound = false;
     } else {
       dataFound = true;
     }
+    super.initState();
   }
 
   @override
@@ -33,14 +35,15 @@ class _HorizontallyScrollableSectionState
           child: (dataFound)
               ? ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: widget.items.length,
+                  itemCount: widget.scannedPlantModel.scannedPlants.length,
                   separatorBuilder: (context, _) => const SizedBox(
                     width: 14,
                   ),
                   itemBuilder: (context, index) => HomeItemCard(
-                    item: widget.items[index],
-                    commonName: widget.items[index].commonName!,
-                    url: widget.items[index].image!,
+                    item: widget.scannedPlantModel.scannedPlants[index],
+                    commonName: widget
+                        .scannedPlantModel.scannedPlants[index].commonName!,
+                    url: widget.scannedPlantModel.scannedPlants[index].image!,
                   ),
                 )
               : Center(child: Text("Nothing here yet :("))),
