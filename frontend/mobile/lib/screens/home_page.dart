@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             HorizontallyScrollableSection(
-                items: widget.scannedPlantModel!.scannedPlants),
+                scannedPlantModel: widget.scannedPlantModel!),
             const SizedBox(
               height: 20,
             ),
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             HorizontallyScrollableSection(
-                items: widget.scannedPlantModel!.scannedPlants),
+                scannedPlantModel: widget.scannedPlantModel!),
             const SizedBox(
               height: 20,
             ),
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             HorizontallyScrollableSection(
-                items: widget.scannedPlantModel!.scannedPlants),
+                scannedPlantModel: widget.scannedPlantModel!),
           ],
         ),
       ),
