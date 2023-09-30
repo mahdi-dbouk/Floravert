@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
-import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/models/user_data_model.dart';
-import 'package:mobile/providers/scanned_plant_provider.dart';
-import 'package:provider/provider.dart';
 import '../config/send_request.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' as io;
