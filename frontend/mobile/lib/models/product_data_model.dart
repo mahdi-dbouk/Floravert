@@ -9,7 +9,7 @@ class Product {
   double? price;
   List<String>? images;
   String? description;
-  int? totalQuantity;
+  double? totalQuantity;
 
   Product(
       {this.name,
@@ -27,12 +27,12 @@ class Product {
     name = json['product']['name'] ?? '';
     profilePic = json['traderProfilePic'] ?? '';
     category = json['product']['category'] ?? '';
-    price = json['product']['price'] ?? '';
+    price = json['product']['price'] ?? 0.0;
     ratings = (json['product']['ratings'] as List<dynamic>?)?.cast<int>() ?? [];
     images =
         (json['product']['images'] as List<dynamic>?)?.cast<String>() ?? [];
     description = json['product']['description'] ?? '';
-    totalQuantity = json['product']['totalQuantity'] ?? '';
+    //totalQuantity = json['product']['totalQuantity'] ?? 0.0;
   }
 
   Map<String, dynamic> toJson() {
