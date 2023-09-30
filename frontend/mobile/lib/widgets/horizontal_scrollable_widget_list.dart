@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/widgets/home_item_card.dart';
 
@@ -46,7 +45,7 @@ class _HorizontallyScrollableSectionState
                     url: widget.scannedPlantModel.scannedPlants[index].image!,
                   ),
                 )
-              : Center(child: Text("Nothing here yet :("))),
+              : const Center(child: Text("Nothing here yet :("))),
     );
   }
 }
