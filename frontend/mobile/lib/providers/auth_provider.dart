@@ -80,6 +80,7 @@ class AuthProvider extends ChangeNotifier {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', response['token']);
+        prefs = await SharedPreferences.getInstance();
         token = prefs.getString('token')!;
       } on Exception catch (e) {
         print(e);
