@@ -11,7 +11,7 @@ import { chatsHandler } from './controllers/chat.controller.js';
 
 
 const PORT : String|Number = process.env.PORT || 8000;
-const HOST_ADDRESS : String = process.env.PORT;
+const HOST_ADDRESS : String = process.env.HOST_ADDRESS;
 
 const app : Application = express();
 
