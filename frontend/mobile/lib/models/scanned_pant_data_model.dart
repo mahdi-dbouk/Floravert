@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import 'key_facts_data_model.dart';
 import 'recipe_data_model.dart';
 
