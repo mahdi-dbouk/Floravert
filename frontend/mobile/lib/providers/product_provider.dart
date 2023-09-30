@@ -53,7 +53,7 @@ class ProductProvider extends ChangeNotifier {
         category: category,
         description: description,
         price: double.parse(price),
-        totalQuantity: int.parse(totalQuantity),
+        totalQuantity: double.parse(totalQuantity),
         images: base64Images);
 
     Map<String, dynamic> data = p.toJson();
