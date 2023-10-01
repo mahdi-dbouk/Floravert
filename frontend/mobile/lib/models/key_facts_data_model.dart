@@ -3,17 +3,17 @@ class KeyFacts {
   String? seasonality;
   String? toxicity;
   String? habitat;
-  String? uses;
+  String? use;
   String? conservationStatus;
 
-  KeyFacts({this.edibility, this.seasonality, this.habitat, this.uses});
+  KeyFacts({this.edibility, this.seasonality, this.habitat, this.use});
 
   KeyFacts.fromJson(Map<String, dynamic> json) {
     edibility = json['edibility'];
     seasonality = json['seasonality'];
     toxicity = json['toxicity'];
     habitat = json['habitat'];
-    uses = json['uses'];
+    use = json['use'];
     conservationStatus = json['status'];
   }
 
@@ -23,7 +23,7 @@ class KeyFacts {
     data['seasonality'] = seasonality;
     data['toxicity'] = toxicity;
     data['habitat'] = habitat;
-    data['uses'] = uses;
+    data['use'] = use;
     data['status'] = conservationStatus;
     return data;
   }
