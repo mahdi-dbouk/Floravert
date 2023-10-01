@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/widgets/home_item_card.dart';
 
 class HorizontallyScrollableSection extends StatefulWidget {
-  final ScannedPlantProvider scannedPlantModel;
+  final ScannedPlantProvider? scannedPlantModel;
+  final AuthProvider? authUserModel;
+  final bool? isFromMap;
   const HorizontallyScrollableSection(
-      {super.key, required this.scannedPlantModel});
+      {super.key,
+      required this.scannedPlantModel,
+      this.isFromMap,
+      this.authUserModel});
 
   @override
   State<HorizontallyScrollableSection> createState() =>
@@ -17,7 +24,7 @@ class _HorizontallyScrollableSectionState
   bool dataFound = false;
   @override
   void initState() {
-    if (widget.scannedPlantModel.scannedPlants.isEmpty) {
+    if (widget.scannedPlantModel!.scannedPlants.isEmpty) {
       dataFound = false;
     } else {
       dataFound = true;
@@ -34,15 +41,16 @@ class _HorizontallyScrollableSectionState
           child: (dataFound)
               ? ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: widget.scannedPlantModel.scannedPlants.length,
+                  itemCount: widget.scannedPlantModel!.scannedPlants.length,
                   separatorBuilder: (context, _) => const SizedBox(
                     width: 14,
                   ),
                   itemBuilder: (context, index) => HomeItemCard(
-                    item: widget.scannedPlantModel.scannedPlants[index],
+                    isFromMap: widget.isFromMap,
+                    item: widget.scannedPlantModel!.scannedPlants[index],
                     commonName: widget
-                        .scannedPlantModel.scannedPlants[index].commonName!,
-                    url: widget.scannedPlantModel.scannedPlants[index].image!,
+                        .scannedPlantModel!.scannedPlants[index].commonName!,
+                    url: widget.scannedPlantModel!.scannedPlants[index].image!,
                   ),
                 )
               : const Center(child: Text("Nothing here yet :("))),
