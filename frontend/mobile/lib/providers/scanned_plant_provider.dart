@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mobile/config/send_request.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
@@ -8,6 +10,7 @@ import '../utils/image_handling.dart';
 class ScannedPlantProvider extends ChangeNotifier {
   List<ScannedPlant> _plants = [];
   List<ScannedPlant> _all = [];
+  late ScannedPlant result;
   ScannedPlantProvider(this._plants);
 
   List<ScannedPlant> get scannedPlants => _plants;
@@ -55,6 +58,14 @@ class ScannedPlantProvider extends ChangeNotifier {
           'post',
           {'base64Image': base64Image},
           token);
+
+      result = ScannedPlant.fromJson2(response['data']);
+
+      Map<String, dynamic> scannedPlant = result.toJson();
+
+      dynamic response2 =
+          await sendRequest('/user/scanned/add', 'post', scannedPlant, token);
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
