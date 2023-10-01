@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
@@ -104,6 +106,10 @@ class _LoginState extends State<Login> {
                           Provider.of<AuthProvider>(context, listen: false)
                               .login(emailInputController.text.toString(),
                                   passwordInputController.text.toString());
+                          setState(() {
+                            isLoading = true;
+                          });
+
                           try {
                             Provider.of<ScannedPlantProvider>(context,
                                     listen: false)
