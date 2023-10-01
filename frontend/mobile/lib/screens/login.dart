@@ -110,15 +110,7 @@ class _LoginState extends State<Login> {
                             isLoading = true;
                           });
 
-                          try {
-                            Provider.of<ScannedPlantProvider>(context,
-                                    listen: false)
-                                .setScannedPlants(List<ScannedPlant>.from(
-                                    authUserModel.user.scannedPlants ?? []));
-                            Navigator.of(context).pushReplacementNamed('/');
-                          } on Exception {
-                            rethrow;
-                          }
+                          Navigator.of(context).pushReplacementNamed('/');
                         } catch (e) {
                           setState(() {});
                         }
