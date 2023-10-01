@@ -20,11 +20,11 @@ class ScannedResult extends StatefulWidget {
 class _ScannedResultState extends State<ScannedResult> {
   @override
   void initState() {
+    super.initState();
     if (widget.isAScan) {
       Provider.of<ScannedPlantProvider>(context, listen: false)
           .sendScannedPhotoToServer(widget.image);
     }
-    super.initState();
   }
 
   @override
@@ -97,7 +97,7 @@ class _ScannedResultState extends State<ScannedResult> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(200),
                             border: Border.all(width: 4, color: primary)),
-                        child: (widget.image != null)
+                        child: (widget.image == null)
                             ? Shimmer(
                                 gradient: LinearGradient(
                                     colors: [
@@ -145,7 +145,7 @@ class _ScannedResultState extends State<ScannedResult> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                         (widget.isAScan)
-                            ? ''
+                            ? scannedPlantModel.result.commonName!
                             : widget.scannedPlant!.commonName!,
                         style: TextStyle(
                             fontSize: 20,
@@ -155,11 +155,11 @@ class _ScannedResultState extends State<ScannedResult> {
                     ),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: 20,
+                        height: 36,
                         child: Center(
                           child: Text(
                             (widget.isAScan)
-                                ? ''
+                                ? scannedPlantModel.result.botanicalName!
                                 : widget.scannedPlant!.botanicalName!,
                             style: const TextStyle(
                                 fontSize: 18,
@@ -216,9 +216,12 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .edibility ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel
+                                                  .result.keyFacts!.edibility!)
+                                              : Text(widget.scannedPlant!
+                                                      .keyFacts!.edibility ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -255,9 +258,12 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .toxicity ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel
+                                                  .result.keyFacts!.toxicity!)
+                                              : Text(widget.scannedPlant!
+                                                      .keyFacts!.toxicity ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -300,9 +306,12 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .habitat ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel
+                                                  .result.keyFacts!.habitat!)
+                                              : Text(widget.scannedPlant!
+                                                      .keyFacts!.habitat ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -339,9 +348,12 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .uses ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel
+                                                  .result.keyFacts!.use!)
+                                              : Text(widget.scannedPlant!
+                                                      .keyFacts!.use ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -384,9 +396,12 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .seasonality ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel.result
+                                                  .keyFacts!.seasonality!)
+                                              : Text(widget.scannedPlant!
+                                                      .keyFacts!.seasonality ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -423,9 +438,16 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(widget.scannedPlant!.keyFacts!
-                                                  .conservationStatus ??
-                                              "")
+                                          (widget.isAScan)
+                                              ? Text(scannedPlantModel
+                                                  .result
+                                                  .keyFacts!
+                                                  .conservationStatus!)
+                                              : Text(widget
+                                                      .scannedPlant!
+                                                      .keyFacts!
+                                                      .conservationStatus ??
+                                                  "")
                                         ],
                                       ),
                                     ),
@@ -454,9 +476,12 @@ class _ScannedResultState extends State<ScannedResult> {
                         child: Text.rich(
                           TextSpan(
                             style: TextStyle(fontSize: 18),
-                            text: widget.scannedPlant!.description!,
+                            text: (widget.isAScan)
+                                ? scannedPlantModel.result.description
+                                : widget.scannedPlant!.description!,
                           ),
                           textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.justify,
                         )),
                     const SizedBox(
                       height: 20,
@@ -472,7 +497,7 @@ class _ScannedResultState extends State<ScannedResult> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 350,
+                      height: 300,
                       child: ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => Padding(
@@ -483,22 +508,33 @@ class _ScannedResultState extends State<ScannedResult> {
                                       color: primary[200],
                                       borderRadius: BorderRadius.circular(20)),
                                   child: ListTile(
-                                    title: Text(widget
-                                        .scannedPlant!.recipes![index].name!),
-                                    subtitle: const Row(
-                                      children: [
-                                        Text("ingredient 1"),
-                                        Text("ingredient 1"),
-                                        Text("ingredient 1"),
-                                      ],
-                                    ),
+                                    title: (widget.isAScan)
+                                        ? Center(
+                                            child: Text(scannedPlantModel
+                                                .result.recipes![index].name!),
+                                          )
+                                        : Center(
+                                            child: Text((widget.scannedPlant!
+                                                .recipes![index].name!)),
+                                          ),
+                                    subtitle: (widget.isAScan)
+                                        ? Center(
+                                            child: Text(scannedPlantModel.result
+                                                .recipes![index].ingredients!),
+                                          )
+                                        : Center(
+                                            child: Text(widget.scannedPlant!
+                                                .recipes![index].ingredients!),
+                                          ),
                                   ),
                                 ),
                               ),
                           separatorBuilder: (context, index) => const SizedBox(
                                 height: 10,
                               ),
-                          itemCount: 3),
+                          itemCount: (widget.isAScan)
+                              ? scannedPlantModel.result.recipes!.length
+                              : widget.scannedPlant!.recipes!.length),
                     ),
                     const SizedBox(
                       height: 20,
@@ -514,17 +550,33 @@ class _ScannedResultState extends State<ScannedResult> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 400,
+                      height: 200,
                       child: ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => ListTile(
-                                title:
-                                    Text(widget.scannedPlant!.regions![index]),
+                                title: (widget.isAScan)
+                                    ? Center(
+                                        child: Text(
+                                          scannedPlantModel
+                                              .result.regions![index],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )
+                                    : Center(
+                                        child: Text(
+                                          widget.scannedPlant!.regions![index],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
                               ),
                           separatorBuilder: (context, index) => const SizedBox(
                                 height: 10,
                               ),
-                          itemCount: 3),
+                          itemCount: (widget.isAScan)
+                              ? scannedPlantModel.result.regions!.length
+                              : widget.scannedPlant!.regions!.length),
                     )
                   ],
                 )
