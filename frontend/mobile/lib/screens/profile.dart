@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
-import 'package:mobile/widgets/home_item_card.dart';
 import 'package:mobile/widgets/horizontal_scrollable_widget_list.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
