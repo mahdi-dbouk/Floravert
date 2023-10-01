@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobile/providers/map_provider.dart';
 import 'package:mobile/providers/product_provider.dart';
 import 'package:mobile/screens/add_product.dart';
 import 'package:mobile/screens/chat.dart';
@@ -53,6 +54,9 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (context) => ProductProvider([]),
         ),
+        ChangeNotifierProvider(
+          create: (context) => MapProvider(),
+        )
       ],
       child: MaterialApp(
         title: "Floravert",
