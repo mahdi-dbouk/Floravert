@@ -21,9 +21,9 @@ class Product {
       this.totalQuantity});
 
   Product.fromJson(Map<String, dynamic> json) {
-    traderName = json['traderName'];
-    traderEmail = json['email'];
-    phone = json['phone'];
+    traderName = json['traderName'] ?? '';
+    traderEmail = json['email'] ?? '';
+    phone = json['phone'] ?? '';
     name = json['product']['name'] ?? '';
     profilePic = json['traderProfilePic'] ?? '';
     category = json['product']['category'] ?? '';
@@ -32,6 +32,15 @@ class Product {
     images =
         (json['product']['images'] as List<dynamic>?)?.cast<String>() ?? [];
     description = json['product']['description'] ?? '';
+    //totalQuantity = json['product']['totalQuantity'] ?? 0.0;
+  }
+  Product.fromJson2(Map<String, dynamic> json) {
+    name = json['name'] ?? '';
+    category = json['category'] ?? '';
+    price = json['price'] ?? 0.0;
+    ratings = (json['ratings'] as List<dynamic>?)?.cast<int>() ?? [];
+    images = (json['images'] as List<dynamic>?)?.cast<String>() ?? [];
+    description = json['description'] ?? '';
     //totalQuantity = json['product']['totalQuantity'] ?? 0.0;
   }
 
