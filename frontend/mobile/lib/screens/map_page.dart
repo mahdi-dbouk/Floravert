@@ -36,9 +36,9 @@ Future<dynamic> getLocation() async {
 class _MapPageState extends State<MapPage> {
   @override
   void initState() {
-    super.initState();
     Provider.of<ScannedPlantProvider>(context, listen: false)
         .getAllScannedPlants();
+    super.initState();
   }
 
   @override
