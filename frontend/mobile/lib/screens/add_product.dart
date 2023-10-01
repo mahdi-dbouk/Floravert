@@ -59,7 +59,7 @@ class _AddProductFormState extends State<AddProductForm> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.pop<String>(context, "refresh");
                     },
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
@@ -89,7 +89,7 @@ class _AddProductFormState extends State<AddProductForm> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 2))
+                              offset: const Offset(0, 2))
                         ]),
                         margin: const EdgeInsets.symmetric(horizontal: 5),
                         width: MediaQuery.of(context).size.width,
@@ -199,14 +199,18 @@ class _AddProductFormState extends State<AddProductForm> {
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
                 onPressed: () {
-                  productModel.createProduct(
-                      _titleInputController.text,
-                      _descriptionInputController.text,
-                      selectedOption,
-                      _quantityInputController.text,
-                      _priceInputController.text,
-                      selectedImages);
-                  Navigator.of(context).pop();
+                  try {
+                    productModel.createProduct(
+                        _titleInputController.text,
+                        _descriptionInputController.text,
+                        selectedOption,
+                        _quantityInputController.text,
+                        _priceInputController.text,
+                        selectedImages);
+                    Navigator.pop<String>(context, "refresh");
+                  } catch (e) {
+                    print(e);
+                  }
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
