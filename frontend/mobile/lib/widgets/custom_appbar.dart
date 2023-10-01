@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -43,15 +45,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       leading: Builder(builder: (context) {
-        return IconButton(
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          icon: const Icon(
-            Icons.menu_rounded,
-            size: 28,
-          ),
-          color: Theme.of(context).primaryColor,
+        return Row(
+          children: [
+            SizedBox(
+              width: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/profile');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(200),
+                      border: Border.all(
+                          width: 2,
+                          color: Theme.of(context).colorScheme.primary)),
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                        Provider.of<AuthProvider>(context).user.pictureUrl!),
+                  ),
+                ),
+              ),
+            ),
+          ],
         );
       }),
     );
