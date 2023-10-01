@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/widgets/home_item_card.dart';
