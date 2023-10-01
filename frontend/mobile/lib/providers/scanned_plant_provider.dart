@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mobile/config/send_request.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
