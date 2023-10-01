@@ -146,7 +146,7 @@ class _MarketState extends State<Market> {
                       title: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.spa_rounded),
+                          Icon(Icons.wifi_protected_setup_sharp),
                           SizedBox(width: 2),
                           Text('Processed'),
                         ],
