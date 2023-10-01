@@ -44,7 +44,7 @@ class ScannedPlant {
     commonName = json['commonName'];
     botanicalName = json['botanicalName'];
     description = json['description'];
-    location = json['scanLoation'] != null
+    location = json['scanLocation'] != null
         ? ScanLocation.fromJson(json['scanLocation'])
         : null;
     if (json['recipes'] != null) {
