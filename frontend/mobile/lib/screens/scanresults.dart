@@ -97,7 +97,7 @@ class _ScannedResultState extends State<ScannedResult> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(200),
                             border: Border.all(width: 4, color: primary)),
-                        child: (widget.image == null)
+                        child: (widget.image != null)
                             ? Shimmer(
                                 gradient: LinearGradient(
                                     colors: [
@@ -144,7 +144,9 @@ class _ScannedResultState extends State<ScannedResult> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Common Name",
+                        (widget.isAScan)
+                            ? ''
+                            : widget.scannedPlant!.commonName!,
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -154,10 +156,12 @@ class _ScannedResultState extends State<ScannedResult> {
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: 20,
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            "Botaical Name",
-                            style: TextStyle(
+                            (widget.isAScan)
+                                ? ''
+                                : widget.scannedPlant!.botanicalName!,
+                            style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic),
@@ -190,7 +194,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -212,7 +216,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .edibility ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -227,7 +233,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -249,7 +255,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .toxicity ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -270,7 +278,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -292,7 +300,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .habitat ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -307,7 +317,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -329,7 +339,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .uses ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -350,7 +362,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -372,7 +384,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .seasonality ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -387,7 +401,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                     horizontal: 10, vertical: 5),
                                 width: 180,
                                 height: 80,
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -409,7 +423,9 @@ class _ScannedResultState extends State<ScannedResult> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text("content")
+                                          Text(widget.scannedPlant!.keyFacts!
+                                                  .conservationStatus ??
+                                              "")
                                         ],
                                       ),
                                     ),
@@ -433,13 +449,12 @@ class _ScannedResultState extends State<ScannedResult> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const Padding(
+                    Padding(
                         padding: EdgeInsets.all(20),
                         child: Text.rich(
                           TextSpan(
                             style: TextStyle(fontSize: 18),
-                            text:
-                                "sdksdldsksdlsdsdkflsdkdskldsdskljsdkldsjdslkjflksdjlksdfjsldkjfklsdjslkfjsdlkfjsklfjskfjslfksdjflksjflsdkfjlsfjlskdkfjlsfjsklfjsdklfjsklfjslkfjsklfsjfklsjflsdkfjslkfjsdlkjfsldkfjslkjfskfsfj",
+                            text: widget.scannedPlant!.description!,
                           ),
                           textDirection: TextDirection.ltr,
                         )),
@@ -467,9 +482,10 @@ class _ScannedResultState extends State<ScannedResult> {
                                   decoration: BoxDecoration(
                                       color: primary[200],
                                       borderRadius: BorderRadius.circular(20)),
-                                  child: const ListTile(
-                                    title: Text("Recipe Name"),
-                                    subtitle: Row(
+                                  child: ListTile(
+                                    title: Text(widget
+                                        .scannedPlant!.recipes![index].name!),
+                                    subtitle: const Row(
                                       children: [
                                         Text("ingredient 1"),
                                         Text("ingredient 1"),
@@ -501,8 +517,9 @@ class _ScannedResultState extends State<ScannedResult> {
                       height: 400,
                       child: ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) => const ListTile(
-                                title: Text("Region"),
+                          itemBuilder: (context, index) => ListTile(
+                                title:
+                                    Text(widget.scannedPlant!.regions![index]),
                               ),
                           separatorBuilder: (context, index) => const SizedBox(
                                 height: 10,
