@@ -6,7 +6,6 @@ import 'package:mobile/screens/map_page.dart';
 import 'package:mobile/screens/market.dart';
 import 'package:mobile/widgets/custom_appbar.dart';
 import 'package:mobile/screens/home_page.dart';
-import 'package:mobile/widgets/map_action_button.dart';
 import 'package:mobile/widgets/market_action_button.dart';
 import 'package:mobile/widgets/take_photo_button.dart';
 import 'package:provider/provider.dart';
