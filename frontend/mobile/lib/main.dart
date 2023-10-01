@@ -78,7 +78,9 @@ class _AppState extends State<App> {
                 traderEmail: '',
                 profilePic: '',
               ),
-          '/scanned': (context) => const ScannedResult(),
+          '/scanned': (context) => const ScannedResult(
+                isAScan: false,
+              ),
           '/map': (context) => const MapPage(),
           '/add/product': (context) => const AddProductForm(),
           '/product': (context) => const ProductView(),
