@@ -24,8 +24,8 @@ class _MarketState extends State<Market> {
 
   @override
   void initState() {
-    super.initState();
     Provider.of<ProductProvider>(context, listen: false).getAllProducts();
+    super.initState();
   }
 
   @override
