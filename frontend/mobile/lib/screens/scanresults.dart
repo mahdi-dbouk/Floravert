@@ -7,7 +7,8 @@ import 'package:shimmer/shimmer.dart';
 
 class ScannedResult extends StatefulWidget {
   final File? image;
-  const ScannedResult({super.key, this.image});
+  final bool isAScan;
+  const ScannedResult({super.key, this.image, required this.isAScan});
 
   @override
   State<ScannedResult> createState() => _ScannedResultState();
