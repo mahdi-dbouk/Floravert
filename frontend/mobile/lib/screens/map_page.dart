@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
+import 'package:mobile/widgets/horizontal_scrollable_widget_list.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -72,6 +73,37 @@ class _MapPageState extends State<MapPage> {
                 markers: allMarkers(plantModel.allPlants, plantModel, context))
           ],
         ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "Recently Scanned Plants",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: HorizontallyScrollableSection(
+                        scannedPlantModel: Provider.of<ScannedPlantProvider>(
+                            context,
+                            listen: false)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
       ]),
     );
   }
