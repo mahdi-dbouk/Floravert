@@ -8,10 +8,10 @@ import 'package:shimmer/shimmer.dart';
 
 class ScannedResult extends StatefulWidget {
   final File? image;
-  final ScannedPlantProvider? scannedPlantModel;
+  final ScannedPlant? scannedPlant;
   final bool isAScan;
   const ScannedResult(
-      {super.key, this.image, required this.isAScan, this.scannedPlantModel});
+      {super.key, this.image, required this.isAScan, this.scannedPlant});
 
   @override
   State<ScannedResult> createState() => _ScannedResultState();
@@ -30,9 +30,8 @@ class _ScannedResultState extends State<ScannedResult> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ScannedPlantProvider>(
-      builder:
-          (BuildContext context, ScannedPlantProvider value, Widget? child) =>
-              Scaffold(
+      builder: (BuildContext context, scannedPlantModel, Widget? child) =>
+          Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
             child: SafeArea(
@@ -132,10 +131,15 @@ class _ScannedResultState extends State<ScannedResult> {
                                         BorderRadiusDirectional.circular(400)),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(400),
-                                  child: Image.file(
-                                    widget.image!,
-                                    fit: BoxFit.cover,
-                                  ),
+                                  child: (widget.isAScan)
+                                      ? Image.file(
+                                          widget.image!,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.network(
+                                          widget.scannedPlant!.image!,
+                                          fit: BoxFit.cover,
+                                        ),
                                 ))),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
