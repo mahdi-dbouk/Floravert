@@ -51,7 +51,7 @@ class _ScannedResultState extends State<ScannedResult> {
                       children: [
                         TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/');
+                              Navigator.of(context).pop();
                             },
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
