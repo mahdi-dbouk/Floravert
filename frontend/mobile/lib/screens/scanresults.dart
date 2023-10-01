@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
@@ -7,8 +8,10 @@ import 'package:shimmer/shimmer.dart';
 
 class ScannedResult extends StatefulWidget {
   final File? image;
+  final ScannedPlantProvider? scannedPlantModel;
   final bool isAScan;
-  const ScannedResult({super.key, this.image, required this.isAScan});
+  const ScannedResult(
+      {super.key, this.image, required this.isAScan, this.scannedPlantModel});
 
   @override
   State<ScannedResult> createState() => _ScannedResultState();
