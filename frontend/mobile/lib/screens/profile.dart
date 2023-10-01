@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
+import 'package:mobile/widgets/home_item_card.dart';
 import 'package:mobile/widgets/horizontal_scrollable_widget_list.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -19,14 +20,13 @@ class _ProfileState extends State<Profile> {
     return Consumer<AuthProvider>(
       builder: (BuildContext context, authUserModel, child) => Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: SingleChildScrollView(
-            child: SafeArea(
-                child: Column(
+        body: SafeArea(
+            child: Column(
           children: [
             Stack(children: [
               Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 160,
+                  height: 110,
                   color: primary[200]),
               Column(children: [
                 const SizedBox(
@@ -55,11 +55,24 @@ class _ProfileState extends State<Profile> {
                                     color: Colors.black87, fontSize: 16))
                           ],
                         )),
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Row(
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                authUserModel.logout();
+                                Navigator.of(context).popAndPushNamed('/login');
+                              },
+                              child: Text("Logout"))
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 Container(
-                    height: 200,
-                    width: 200,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(200),
                         border: Border.all(
@@ -134,6 +147,9 @@ class _ProfileState extends State<Profile> {
             Divider(
               color: primary[100],
             ),
+            SizedBox(
+              height: 20,
+            ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
@@ -141,14 +157,129 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            HorizontallyScrollableSection(
-                scannedPlantModel:
-                    Provider.of<ScannedPlantProvider>(context, listen: false)),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 10,
             ),
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              child: HorizontallyScrollableSection(
+                  scannedPlantModel: Provider.of<ScannedPlantProvider>(context,
+                      listen: false)),
+            ),
+            const SizedBox(
+              height: 0,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                "My Products",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 10),
+                child: SizedBox(
+                  height: 200,
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: (authUserModel.user.products!.length > 0)
+                          ? ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: authUserModel.user.products!.length,
+                              separatorBuilder: (context, _) => const SizedBox(
+                                    width: 14,
+                                  ),
+                              itemBuilder: (context, index) => SizedBox(
+                                    width: 150,
+                                    height: 200,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: AspectRatio(
+                                            aspectRatio: 16 / 9,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.network(
+                                                authUserModel
+                                                        .user
+                                                        .products![index]
+                                                        .images![0] ??
+                                                    "https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-square.png",
+                                                fit: BoxFit.cover,
+                                                loadingBuilder:
+                                                    (BuildContext context,
+                                                        Widget child,
+                                                        ImageChunkEvent?
+                                                            loadingProgress) {
+                                                  if (loadingProgress != null) {
+                                                    return Shimmer(
+                                                      gradient: LinearGradient(
+                                                          colors: [
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[100]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                            Colors.grey[300]!,
+                                                          ],
+                                                          begin:
+                                                              FractionalOffset
+                                                                  .topLeft,
+                                                          end: FractionalOffset
+                                                              .bottomRight),
+                                                      period: const Duration(
+                                                          milliseconds: 1500),
+                                                      direction:
+                                                          ShimmerDirection.ltr,
+                                                      child: Container(
+                                                        width: 200,
+                                                        height: 256,
+                                                        color: Colors.white,
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    return child;
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Text.rich(TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                    text: authUserModel.user
+                                                        .products![index].name),
+                                              ],
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight:
+                                                      FontWeight.w500))),
+                                        ),
+                                      ],
+                                    ),
+                                  ))
+                          : const Center(child: Text("Nothing here yet :("))),
+                )),
           ],
-        ))),
+        )),
       ),
     );
   }
