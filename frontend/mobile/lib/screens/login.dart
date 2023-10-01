@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/auth_provider.dart';
-import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/screens/register.dart';
 import 'package:provider/provider.dart';
 import '/widgets/textinput.dart';
