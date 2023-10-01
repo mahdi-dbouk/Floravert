@@ -1,7 +1,6 @@
 import {Response} from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware.js';
 import User from '../models/user.model.js';
-import { decodeThenSendToS3 } from '../utils/image.handler.js';
 import {validationResult} from 'express-validator';
 import mongoose,{ Schema, Types } from 'mongoose';
 
@@ -20,7 +19,7 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
     const {
         commonName, 
         botanicalName, 
-        base64Image,
+        imageURL,
         keyFacts,
         description,
         benefits,
@@ -31,7 +30,6 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
 
     } = req.body;
 
-    const awsResponse = await decodeThenSendToS3(base64Image);
 
     try {
         const updatedUser = await User.findByIdAndUpdate(_id, {
@@ -40,7 +38,7 @@ export const addScanned = async (req: AuthRequest, res:Response) => {
                     commonName,
                     botanicalName,
                     description,
-                    image: awsResponse.Location,
+                    image: imageURL,
                     keyFacts: {...keyFacts},
                     benefits: benefits,
                     commonUses: commonUses,
