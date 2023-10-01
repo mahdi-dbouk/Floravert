@@ -21,6 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    super.initState();
     Provider.of<ScannedPlantProvider>(context, listen: false).setScannedPlants(
         List<ScannedPlant>.from(
             widget.authUserModel?.user.scannedPlants ?? []));
