@@ -1,3 +1,5 @@
+import 'package:mobile/models/product_data_model.dart';
+
 import 'post_data_model.dart';
 import 'scanned_pant_data_model.dart';
 import 'message_data_model.dart';
@@ -19,6 +21,7 @@ class User {
   List<String>? followers;
   List<String>? followed;
   List<Contact>? contacts;
+  List<Product>? products;
 
   User(
       {this.id,
@@ -35,7 +38,8 @@ class User {
       this.messages,
       this.followers,
       this.followed,
-      this.contacts});
+      this.contacts,
+      this.products});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -73,6 +77,13 @@ class User {
       contacts = <Contact>[];
       json['contacts'].forEach((v) {
         contacts!.add(Contact.fromJson(v));
+      });
+    }
+
+    if (json['products'] != null) {
+      products = <Product>[];
+      json['products'].forEach((v) {
+        products!.add(Product.fromJson2(v));
       });
     }
   }
