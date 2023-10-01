@@ -16,11 +16,9 @@ class ScannedResult extends StatefulWidget {
 class _ScannedResultState extends State<ScannedResult> {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     Provider.of<ScannedPlantProvider>(context, listen: false)
         .sendScannedPhotoToServer(widget.image);
+    super.initState();
   }
 
   @override
