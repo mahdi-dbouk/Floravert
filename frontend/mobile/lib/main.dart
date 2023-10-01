@@ -72,7 +72,11 @@ class _AppState extends State<App> {
           '/register': (context) => const Register(),
           '/setup': (context) => const Setup(),
           '/contacts': (context) => const Contacts(),
-          '/chat': (context) => const Chats(),
+          '/chat': (context) => const Chats(
+                username: '',
+                traderEmail: '',
+                profilePic: '',
+              ),
           '/scanned': (context) => const ScannedResult(),
           '/map': (context) => const MapPage(),
           '/add/product': (context) => const AddProductForm(),
