@@ -1,24 +1,18 @@
 class Recipe {
-  List<String>? ingredients;
-  String? id;
+  String? ingredients;
   String? name;
-  String? category;
 
-  Recipe({this.ingredients, this.id, this.name, this.category});
+  Recipe({this.ingredients, this.name});
 
   Recipe.fromJson(Map<String, dynamic> json) {
-    ingredients = json['ingredients'].cast<String>();
-    id = json['_id'];
+    ingredients = json['ingredients'];
     name = json['name'];
-    category = json['category'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['ingredients'] = ingredients;
-    data['_id'] = id;
     data['name'] = name;
-    data['category'] = category;
     return data;
   }
 }
