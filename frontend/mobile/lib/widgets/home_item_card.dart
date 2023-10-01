@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/map_provider.dart';
 import 'package:provider/provider.dart';
