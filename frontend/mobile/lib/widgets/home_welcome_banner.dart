@@ -18,34 +18,24 @@ class _WelcomeBannerState extends State<WelcomeBanner> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: 3)),
-              child: CircleAvatar(
-                radius: 30,
-                backgroundImage: NetworkImage(widget.url ??
-                    'https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp'),
-              ),
-            ),
             const SizedBox(
               width: 20,
             ),
             Text.rich(TextSpan(children: [
-              const TextSpan(text: "Hello, ", style: TextStyle(fontSize: 18)),
+              const TextSpan(text: "Hello, ", style: TextStyle(fontSize: 22)),
               TextSpan(
                   text: widget.name,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 18,
+                      fontSize: 22,
                       fontWeight: FontWeight.w600)),
               TextSpan(
                   text: "!",
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 18,
+                      fontSize: 22,
                       fontWeight: FontWeight.w600))
             ])),
           ],
