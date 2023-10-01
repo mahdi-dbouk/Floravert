@@ -7,6 +7,7 @@ export interface ScanedRequest extends AuthRequest {
     plant?: {
         commonName: string,
         botanicalName: string,
+        imageURL: string,
     }
 }
 
@@ -26,7 +27,8 @@ export async function identifyPlantByImage(req: ScanedRequest, res: Response, ne
           console.log(botanicalName);
           const plant = {
                 commonName: commonName,
-                botanicalName: botanicalName
+                botanicalName: botanicalName,
+                imageURL: imageURL,
             };
 
             req.plant = plant;
