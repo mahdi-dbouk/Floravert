@@ -96,6 +96,7 @@ class AuthProvider extends ChangeNotifier {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.remove('token');
         token = '';
+        user = User();
       }
     } on Exception catch (e) {
       print(e);
