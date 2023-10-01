@@ -21,7 +21,7 @@ const server: http.Server = http.createServer(app);
 
 const io = new SocketIO.Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
         methods: ['*']
     }
 });
