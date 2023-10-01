@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/models/scanned_pant_data_model.dart';
 import 'package:mobile/providers/auth_provider.dart';
 import 'package:mobile/providers/scanned_plant_provider.dart';
 import 'package:mobile/widgets/home_welcome_banner.dart';
 import 'package:mobile/widgets/horizontal_scrollable_widget_list.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final AuthProvider? authUserModel;
@@ -17,6 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    Provider.of<ScannedPlantProvider>(context, listen: false).setScannedPlants(
+        List<ScannedPlant>.from(
+            widget.authUserModel?.user.scannedPlants ?? []));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -40,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             HorizontallyScrollableSection(
-                scannedPlantModel: widget.scannedPlantModel!),
+                scannedPlantModel: widget.scannedPlantModel),
             const SizedBox(
               height: 20,
             ),
