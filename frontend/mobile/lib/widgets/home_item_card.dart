@@ -73,15 +73,14 @@ class _HomeItemCardState extends State<HomeItemCard> {
               ),
             ),
           ),
-          Text.rich(TextSpan(
-              children: [
-                TextSpan(text: widget.commonName),
-              ],
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w500))),
-          const Text.rich(TextSpan(children: [
-            TextSpan(text: 'example name'),
-          ], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500))),
+          Center(
+            child: Text.rich(TextSpan(
+                children: [
+                  TextSpan(text: widget.commonName),
+                ],
+                style: const TextStyle(
+                    fontSize: 14, fontWeight: FontWeight.w500))),
+          ),
         ],
       ),
     );
