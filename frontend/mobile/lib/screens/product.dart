@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../screens/chat.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductView extends StatefulWidget {
@@ -275,7 +276,18 @@ class _ProductViewState extends State<ProductView> {
                       width: 5,
                     ),
                     ElevatedButton(
-                        onPressed: () {}, child: const Text("Custom Message"))
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => Chats(
+                                      key: UniqueKey(),
+                                      username: args['product'].traderName,
+                                      traderEmail: args['product'].traderEmail,
+                                      profilePic: args['product'].profilePic,
+                                    )),
+                          );
+                        },
+                        child: const Text("Custom Message"))
                   ],
                 ))
               ],
