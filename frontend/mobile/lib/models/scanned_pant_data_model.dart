@@ -19,6 +19,7 @@ class ScannedPlant {
   KeyFacts? keyFacts;
   String? image;
   String? commonName;
+  String? botanicalName;
   String? description;
   ScanLocation? location;
   List<Recipe>? recipes;
@@ -29,6 +30,7 @@ class ScannedPlant {
       {this.keyFacts,
       this.image,
       this.commonName,
+      this.botanicalName,
       this.description,
       this.location,
       this.recipes,
@@ -40,6 +42,7 @@ class ScannedPlant {
         json['keyFacts'] != null ? KeyFacts.fromJson(json['keyFacts']) : null;
     image = json['image'];
     commonName = json['commonName'];
+    botanicalName = json['botanicalName'];
     description = json['description'];
     location = json['scanLoation'] != null
         ? ScanLocation.fromJson(json['scanLocation'])
@@ -61,6 +64,7 @@ class ScannedPlant {
     }
     data['image'] = image;
     data['commonName'] = commonName;
+    data['botanicalName'] = botanicalName;
     data['description'] = description;
     if (recipes != null) {
       data['recipes'] = recipes!.map((v) => v.toJson()).toList();
