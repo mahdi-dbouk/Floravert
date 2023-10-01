@@ -23,7 +23,10 @@ class _NavBarImageButtonState extends State<NavBarImageButton> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ScannedResult(image: _image)));
+                builder: (context) => ScannedResult(
+                      image: _image,
+                      isAScan: true,
+                    )));
       });
     }
   }
