@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                   floatingActionButton: switch (page) {
                     'home' => const NavBarImageButton(),
                     'market' => const MarketActionButton(),
-                    'map' => const MapActionButton(),
+                    'map' => const NavBarImageButton(),
                     String() => null,
                   },
                   bottomNavigationBar: BottomNavigationBar(
