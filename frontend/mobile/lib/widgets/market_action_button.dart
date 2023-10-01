@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 
 class MarketActionButton extends StatefulWidget {
   const MarketActionButton({super.key});
@@ -15,7 +17,8 @@ class _MarketActionButtonState extends State<MarketActionButton> {
       width: 60,
       child: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('/add/product');
+          Navigator.of(context).pushNamed('/add/product').then((value) =>
+              Provider.of<ProductProvider>(context).getAllProducts());
         },
         backgroundColor: Colors.amber,
         shape: const CircleBorder(),
