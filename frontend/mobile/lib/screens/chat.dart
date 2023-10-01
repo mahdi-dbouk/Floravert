@@ -2,40 +2,82 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/v4.dart';
+
+final String baseUrl = dotenv.env['BASE_URL'] ?? "";
 
 class Chats extends StatefulWidget {
-  const Chats({super.key});
+  final String username;
+  final String traderEmail;
+  final String profilePic;
+  const Chats(
+      {super.key,
+      required this.username,
+      required this.traderEmail,
+      required this.profilePic});
 
   @override
   State<Chats> createState() => _ChatsState();
 }
 
 class _ChatsState extends State<Chats> {
-  final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
-  final List<types.Message> _messages = [
-    const types.TextMessage(
-        author: types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ad'),
-        id: 'dfkdldkdf',
-        text: "hello mahdiddd"),
-  ];
-  Map<String, dynamic> contact = {
-    "name": "John",
-    "picture_url":
-        "https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp",
-    "last_message": "hello there",
-    "number": "5",
-    "chats": [
-      {
-        "sent": "hi",
-      },
-      {
-        "sent": "how are you?",
-      },
-      {
-        "received": "I'm good!",
-      },
-    ]
-  };
+  late IO.Socket _socket;
+  String socketId = '';
+  types.User _user = types.User(id: '');
+
+  @override
+  void initState() {
+    super.initState();
+    initializeSocketConnection();
+  }
+
+  void initializeSocketConnection() {
+    String email =
+        Provider.of<AuthProvider>(context, listen: false).user.email!;
+    _socket = IO.io(baseUrl, <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false,
+    });
+
+    print(email);
+    _socket.auth = {'email': email};
+
+    _socket.connect();
+
+    _socket.on('connect', (data) {
+      _user = types.User(id: const Uuid().v4());
+    });
+    _socket.on('authRequest', (message) {
+      var data = {'email': email};
+      _socket.emit('authResponse', data);
+    });
+
+    _socket.on('authSuccess', (data) {});
+
+    _socket.on('received_message', (data) {
+      types.TextMessage message = types.TextMessage(
+          author: types.User(id: data['id']),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+          id: const Uuid().v4(),
+          text: data['content']);
+      _addMessage(message);
+    });
+    _socket.on('error', (error) => print(error));
+    _socket.on('disconnect', (e) => print(e));
+  }
+
+  @override
+  void dispose() {
+    _socket.disconnect();
+    super.dispose();
+  }
+
+  final List<types.Message> _messages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +100,13 @@ class _ChatsState extends State<Chats> {
                   ),
                   CircleAvatar(
                     radius: 24,
-                    backgroundImage: NetworkImage(contact["picture_url"] ??
+                    backgroundImage: NetworkImage(widget.profilePic ??
                         "https://i.stack.imgur.com/y9DpT.jpg"),
                   ),
                 ],
               )),
           titleSpacing: 1,
-          title: Text(contact['name']),
+          title: Text(widget.username),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 5),
@@ -102,10 +144,12 @@ class _ChatsState extends State<Chats> {
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: "sdjdskjdskfdsd",
+      id: Uuid().v4(),
       text: message.text,
     );
     _addMessage(textMessage);
+    _socket.emit(
+        'send_message', {'to': widget.traderEmail, 'content': message.text});
   }
 
   String formatCustomDateHeaderText(DateTime dateTime) {
