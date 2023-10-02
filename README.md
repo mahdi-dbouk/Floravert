@@ -58,7 +58,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 <br><br>
 
-<img src="./readme/planet_net.svg">
+<img src="./readme/plant_net.svg">
 
 
 <br><br>
