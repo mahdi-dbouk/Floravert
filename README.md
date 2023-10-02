@@ -28,9 +28,13 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
+| Landing screen  | Login screen  | Home Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/landing.png) | ![Login](./readme/demo/Login.png) | ![Home](./readme/demo/home.png) |
+| Product screen  | Map screen  | Home Screen |
+| ![Product](./readme/demo/product.png) | ![Map](./readme/demo/map.png) | ![Scan](./readme/demo/scan.png) |
+| Chat Screen |
+| ![Chat](./readme/demo/chat.png) |
 
 <br><br>
 
