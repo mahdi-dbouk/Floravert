@@ -2,6 +2,11 @@
 
 <br><br>
 
+<img src="./readme/table_of_contet.svg">
+
+
+<br><br>
+
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
@@ -49,6 +54,11 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 | ![Login](./readme/login.gif) | ![Scan](./readme/scan-1.gif) | ![Map](./readme/map.gif) | ![Chat](./readme/product.gif) |
 <!-- | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | -->
+
+
+<br><br>
+
+<img src="./readme/planet_net.svg">
 
 
 <br><br>
