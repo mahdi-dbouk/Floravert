@@ -18,10 +18,12 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 ### User Stories
 - As a user, I want to open the camera, so I can scan any plant I want.
+- As a user, I want a full and rich description of the plants I scan, so I can learn more about them.
+- As a user I want to save the scan results, so I can check them later.
 - As a user, I want to navigate to store, so I can order any plant based item I want.
 - As a user, I want to navigate to have an option choosing between processed and raw products, so I can order based on my preferences.
 - As a user, I want to be able to discover areas where other uses found specific plants on a map, so I can avoid wasting my time foraging in the wrong areas.
-- As a user, I want to be able to sell the plants I foraged, in both processed or raw form, so I that I could benefit from my hobby.
+- As a trader, I want to be able to sell the plants I foraged, in both processed or raw form, so I that I could benefit from my hobby.
 -As a user, I want to be able to message traders, so I can order the product.
 
 <br><br>
