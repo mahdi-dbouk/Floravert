@@ -67,6 +67,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 <br><br>
 
 <img src="./readme/plant_net_open_ai.svg">
+
 > Floravert makes use of open access to 3rd party apis to fulfill its mission: "Be there to help users identify any plant they want, from a single image". To acheive this mission, we had to use two separate and indeed powerful apis: Plant Net's API for plant identification, and OpenAI's API for text generation. Before we go into details on how it's done, let's first introduce PlantNet and OpenAI.
 
 ### PlantNet
