@@ -8,36 +8,7 @@ class Contacts extends StatefulWidget {
 }
 
 class _ContactsState extends State<Contacts> {
-  List<Map<String, String>> contacts = [
-    {
-      "name": "John",
-      "picture_url":
-          "https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp",
-      "last_message": "hello there",
-      "number": "3"
-    },
-    {
-      "name": "John",
-      "picture_url":
-          "https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp",
-      "last_message": "hello there",
-      "number": "5"
-    },
-    {
-      "name": "John",
-      "picture_url":
-          "https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp",
-      "last_message": "hello there",
-      "number": "0"
-    },
-    {
-      "name": "John",
-      "picture_url":
-          "https://cdn3d.iconscout.com/3d/premium/thumb/hrd-manager-9642497-7825761.png?f=webp",
-      "last_message": "hello there",
-      "number": "0"
-    },
-  ];
+  List<Map<String, String>> contacts = [];
 
   @override
   Widget build(BuildContext context) {

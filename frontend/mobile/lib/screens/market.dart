@@ -19,6 +19,7 @@ class Product {
 
 class _MarketState extends State<Market> {
   final TextEditingController _searchInputController = TextEditingController();
+  late List<Product> allProducts;
 
   int _selectedOption = 0;
 

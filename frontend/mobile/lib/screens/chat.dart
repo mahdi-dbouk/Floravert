@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 
 final String baseUrl = dotenv.env['BASE_URL'] ?? "";
 

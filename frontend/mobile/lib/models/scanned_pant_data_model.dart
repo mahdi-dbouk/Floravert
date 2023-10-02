@@ -87,7 +87,7 @@ class ScannedPlant {
     if (recipes != null) {
       data['recipes'] = recipes!.map((v) => v.toJson()).toList();
     }
-    data['scanLocation'] = location!.toJson();
+    //data['scanLocation'] = location!.toJson();
     data['regions'] = regions;
     data['_id'] = id;
     return data;

@@ -8,7 +8,7 @@ import '../utils/image_handling.dart';
 class ScannedPlantProvider extends ChangeNotifier {
   List<ScannedPlant> _plants = [];
   List<ScannedPlant> _all = [];
-  late ScannedPlant result;
+  ScannedPlant result = ScannedPlant();
   ScannedPlantProvider(this._plants);
 
   List<ScannedPlant> get scannedPlants => _plants;
