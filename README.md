@@ -46,7 +46,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 ### User Screens (Mobile)
 | Login screen  | Scan screen | Map screen | Chat screen |
 | ---| ---| ---| ---|
-| ![Login](./readme/login.gif) | ![Scan](./readme/scan.gif) | ![Map](./readme/map.gif) | ![Chat](./readme/product.gif) |
+| ![Login](./readme/login.gif) | ![Scan](./readme/scan-1.gif) | ![Map](./readme/map.gif) | ![Chat](./readme/product.gif) |
 <!-- | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | -->
 
