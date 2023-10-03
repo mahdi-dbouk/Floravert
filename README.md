@@ -270,6 +270,21 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 <br><br>
 
+<img src="./readme/performance.svg"/>
+
+## Postman Performance Tests
+ - Login Route [http://54.195.140.2:80/user/login]
+ <br>
+ <img src="./readme/login-route.png">
+ - Add Scanned Result Route [http://54.195.140.2:80/user/scanned/add]
+ <br>
+ <img src="./readme/Screenshot 2023-10-03 141756.png">
+ - Add Scanned Result Route [http://54.195.140.2:80/user/scanned/apis/3rd_party/openai/generate]
+ <br>
+ <img src="./readme/Screenshot 2023-10-03 142042.png">
+
+<br><br>
+
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
