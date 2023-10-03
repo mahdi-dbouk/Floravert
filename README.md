@@ -10,15 +10,15 @@
   - <span style="font-size:20px;">[Trader](#trader)</span>
 
 - <span style="font-size:24px;">[Prototyping](#mockups)</span>
+- <span style="font-size:20px;">[Tech Stack](#floravert-is-built-using-the-following-technologies)</span>
+  - <span style="font-size:20px;">[Frontend](#frontend)</span>
+  - <span style="font-size:20px;">[Backend](#backend)</span>
 - <span style="font-size:24px;">[Demo](#user-screens)</span>
 - <span style="font-size:24px;">[PlantNet + OpenAI](#plantnet)</span>
   - <span style="font-size:20px;">[PlantNet](#plantnet)</span>
   - <span style="font-size:20px;">[OpenAI](#openai)</span>
   - <span style="font-size:20px;">[Connecting the Pieces](#connecting-the-pieces)</span>
   - <span style="font-size:20px;">[The Prompt](#the-prompt)</span>
-- <span style="font-size:20px;">[Tech Stack](#floravert-is-built-using-the-following-technologies)</span>
-  - <span style="font-size:20px;">[Frontend](#frontend)</span>
-  - <span style="font-size:20px;">[Backend](#backend)</span>
 - <span style="font-size:24px;">[How to Run](#prerequisites)</span>
 
 <br><br>
@@ -63,6 +63,35 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 <br><br>
 
+   <!-- Tech stack -->
+   <img src="./readme/title5.svg"/>
+   
+   ##  Floravert is built using the following technologies:
+   
+   ### Frontend
+   > Floravert is built with Flutter, which gives it amazing performance compared to other non-native mobile development framework, while maintaining its cross-platform prowess.
+   
+   #### Floravert App uses:
+   - Provider package for state management (https://pub.dev/packages/provider)
+   - Dio for fetching data from API endpoints (https://pub.dev/packages/dio)
+   - Intl & Intl_phone_number_input to retrieve and validate phone number input (https://pub.dev/packages/intl_phone_number_input)
+   - Shimmer Package to create attractive skeleton loading effects (https://pub.dev/packages/shimmer)
+   - Image-Picker package to help users select one or multiple images / take pictures (https://pub.dev/packages/image_picker)
+   - flutter_chat_ui for attractive messaging UI/UX (https://pub.dev/packages/flutter_chat_ui)
+   - Flutter_Map to build maps with custom widgets as markers (https://pub.dev/packages/flutter_map)
+   ### Backend
+   > Floravert's Backend is built on top of Node.js, with the use of Express framework and Typescript. As for persistent storage, Floravert uses MongoDB. For media storage, Floravert has its own AWS S3 Bucket.
+   
+   #### Floravert Backend uses:
+   - Socket.IO to handle messaging (https://socket.io/)
+   - Mongoose ODM to interact with MongoDB (https://mongoosejs.com/)
+   - Axios library for fetching data from apis (https://www.npmjs.com/package/axios)
+   - AWS-SDK Module for interacting with S3 Bucket Programmatically (https://www.npmjs.com/package/aws-sdk)
+   - JWT for user authentication and Authorization (https://jwt.io/)
+   - OpenAI module for interacting with OpenAI's API (https://www.npmjs.com/package/openai)
+   - Express_Validator Module for validating api request data (https://www.npmjs.com/package/express-validator)
+   
+   <br><br>
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
@@ -78,7 +107,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 <br><br>
 
-<img src="./readme/plant_net_open_ai.svg">
+<img src="./readme/plant_net.svg">
 
 > Floravert makes use of open access to 3rd party apis to fulfill its mission: "Be there to help users identify any plant they want, from a single image". To acheive this mission, we had to use two separate and indeed powerful apis: Plant Net's API for plant identification, and OpenAI's API for text generation. Before we go into details on how it's done, let's first introduce PlantNet and OpenAI.
 
@@ -92,10 +121,10 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 ```JSON
 {
-  "query": {
-    "project": "best",
+   "query": {
+      "project": "best",
     "images": [
-      "buffer_code_image_1",
+       "buffer_code_image_1",
       "buffer_code_image_2"
     ],
     "organs": [
@@ -146,7 +175,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 		"scientificNameAuthorship": "Juss."
 	},
 	"commonNames": [
-		"Chinese hibiscus", //here
+      "Chinese hibiscus", //here
 		"Hawaiian hibiscus",
 		"Hibiscus"
 	]
@@ -240,35 +269,6 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 <br><br>
 
-<!-- Tech stack -->
-<img src="./readme/title5.svg"/>
-
-##  Floravert is built using the following technologies:
-
-### Frontend
-> Floravert is built with Flutter, which gives it amazing performance compared to other non-native mobile development framework, while maintaining its cross-platform prowess.
-
-#### Floravert App uses:
-- Provider package for state management (https://pub.dev/packages/provider)
-- Dio for fetching data from API endpoints (https://pub.dev/packages/dio)
-- Intl & Intl_phone_number_input to retrieve and validate phone number input (https://pub.dev/packages/intl_phone_number_input)
-- Shimmer Package to create attractive skeleton loading effects (https://pub.dev/packages/shimmer)
-- Image-Picker package to help users select one or multiple images / take pictures (https://pub.dev/packages/image_picker)
-- flutter_chat_ui for attractive messaging UI/UX (https://pub.dev/packages/flutter_chat_ui)
-- Flutter_Map to build maps with custom widgets as markers (https://pub.dev/packages/flutter_map)
-### Backend
-> Floravert's Backend is built on top of Node.js, with the use of Express framework and Typescript. As for persistent storage, Floravert uses MongoDB. For media storage, Floravert has its own AWS S3 Bucket.
-
-#### Floravert Backend uses:
-- Socket.IO to handle messaging (https://socket.io/)
-- Mongoose ODM to interact with MongoDB (https://mongoosejs.com/)
-- Axios library for fetching data from apis (https://www.npmjs.com/package/axios)
-- AWS-SDK Module for interacting with S3 Bucket Programmatically (https://www.npmjs.com/package/aws-sdk)
-- JWT for user authentication and Authorization (https://jwt.io/)
-- OpenAI module for interacting with OpenAI's API (https://www.npmjs.com/package/openai)
-- Express_Validator Module for validating api request data (https://www.npmjs.com/package/express-validator)
-
-<br><br>
 
 <img src="./readme/performance.svg"/>
 
