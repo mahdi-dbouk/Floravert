@@ -6,9 +6,17 @@
  <br>
 
 - <span style="font-size:24px;">[User Stories](#user-stories)</span>
+  - <span style="font-size:20px;">[User](#user)</span>
+  - <span style="font-size:20px;">[Trader](#trader)</span>
+
 - <span style="font-size:24px;">[Prototyping](#mockups)</span>
-- <span style="font-size:24px;">[Implementation](#user-screens)</span>
-- <span style="font-size:24px;">[Tech Stack](#floravert-is-built-using-the-following-technologies)</span>
+- <span style="font-size:24px;">[Demo](#user-screens)</span>
+- <span style="font-size:24px;">[PlantNet + OpenAI](#plantnet)</span>
+  - <span style="font-size:20px;">[PlantNet](#plantnet)</span>
+  - <span style="font-size:20px;">[OpenAI](#openai)</span>
+  - <span style="font-size:20px;">[Connecting the Pieces](#connecting-the-pieces)</span>
+  - <span style="font-size:20px;">[The Prompt](#the-prompt)</span>
+- <span style="font-size:20px;">[Tech Stack](#floravert-is-built-using-the-following-technologies)</span>
 - <span style="font-size:24px;">[How to Run](#prerequisites)</span>
 
 <br><br>
