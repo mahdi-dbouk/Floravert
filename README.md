@@ -241,11 +241,19 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-###  Floravert is built using the following technologies:
+##  Floravert is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Mongoose](https://mongoosejs.com/) package which allows the app to create a custom storage schema and save it to a MongoDB database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
+### Frontend
+> Floravert is built with Flutter, which gives it amazing performance compared to other non-native mobile development framework, while maintaining its cross-platform prowess.
+
+#### Floravert App uses:
+- Provider package for state management (https://pub.dev/packages/provider)
+- Dio for fetching data from API endpoints (https://pub.dev/packages/dio)
+- Intl & Intl_phone_number_input to retrieve and validate phone number input (https://pub.dev/packages/intl_phone_number_input)
+- Shimmer Package to create attractive skeleton loading effects (https://pub.dev/packages/shimmer)
+- Image-Picker package to help users select one or multiple images / take pictures (https://pub.dev/packages/image_picker)
+- flutter_chat_ui for attractive messaging UI/UX (https://pub.dev/packages/flutter_chat_ui)
+- Flutter_Map to build maps with custom widgets as markers (https://pub.dev/packages/flutter_map)
 
 <br><br>
 
