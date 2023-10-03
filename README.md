@@ -17,6 +17,8 @@
   - <span style="font-size:20px;">[Connecting the Pieces](#connecting-the-pieces)</span>
   - <span style="font-size:20px;">[The Prompt](#the-prompt)</span>
 - <span style="font-size:20px;">[Tech Stack](#floravert-is-built-using-the-following-technologies)</span>
+  - <span style="font-size:20px;">[Frontend](#frontend)</span>
+  - <span style="font-size:20px;">[Backend](#backend)</span>
 - <span style="font-size:24px;">[How to Run](#prerequisites)</span>
 
 <br><br>
@@ -254,6 +256,17 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 - Image-Picker package to help users select one or multiple images / take pictures (https://pub.dev/packages/image_picker)
 - flutter_chat_ui for attractive messaging UI/UX (https://pub.dev/packages/flutter_chat_ui)
 - Flutter_Map to build maps with custom widgets as markers (https://pub.dev/packages/flutter_map)
+### Backend
+> Floravert's Backend is built on top of Node.js, with the use of Express framework and Typescript. As for persistent storage, Floravert uses MongoDB. For media storage, Floravert has its own AWS S3 Bucket.
+
+#### Floravert Backend uses:
+- Socket.IO to handle messaging (https://socket.io/)
+- Mongoose ODM to interact with MongoDB (https://mongoosejs.com/)
+- Axios library for fetching data from apis (https://www.npmjs.com/package/axios)
+- AWS-SDK Module for interacting with S3 Bucket Programmatically (https://www.npmjs.com/package/aws-sdk)
+- JWT for user authentication and Authorization (https://jwt.io/)
+- OpenAI module for interacting with OpenAI's API (https://www.npmjs.com/package/openai)
+- Express_Validator Module for validating api request data (https://www.npmjs.com/package/express-validator)
 
 <br><br>
 
