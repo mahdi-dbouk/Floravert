@@ -273,13 +273,14 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 <img src="./readme/performance.svg"/>
 
 ## Postman Performance Tests
+> Floravert was tested for performance on the remote server (AWS EC2) and here is a sample of the results
  - Login Route [http://54.195.140.2:80/user/login]
  <br>
  <img src="./readme/login-route.png">
  - Add Scanned Result Route [http://54.195.140.2:80/user/scanned/add]
  <br>
  <img src="./readme/Screenshot 2023-10-03 141756.png">
- - Add Scanned Result Route [http://54.195.140.2:80/user/scanned/apis/3rd_party/openai/generate]
+ - Generate Scan Results [http://54.195.140.2:80/user/scanned/apis/3rd_party/openai/generate]
  <br>
  <img src="./readme/Screenshot 2023-10-03 142042.png">
 
@@ -290,30 +291,70 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 > To set up Floravert locally, follow these steps:
 
-### Prerequisites
+## Prerequisites
+- Node.js
+- Flutter
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+## Project Installation
+### Flutter
 
-### Installation
+1 - Running flutter after cloning it is very straight-forward. All that is required is that after cloning the repo, run the following command:
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+```sh
+flutter run
+```
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+don't create a .env file the root of the flutter folder
 
-Now, you should be able to run Coffee Express locally and explore its features.
+```sh
+cd frontend/mobile
+nano .env
+```
+or create the file using GUI
+
+In the .env file fill only the following field
+
+```sh
+BASE_URL=your-base-url:port
+```
+
+
+### Backend
+> To run the server do the following:
+
+- Navigate to backend directory
+```sh
+cd backend
+```
+- Install the required node modules
+```sh
+npm install
+```
+- create a .env file and paste the following:
+```t
+#host
+PORT= #your port goes here
+HOST_ADDRESS= #insert your host address
+
+#database
+DB_NAME= #insert database name
+DB_PORT= #insert database port
+
+#JWT SECRET
+JWT_SECRET_KEY= #insert your JWT secret here
+
+#S3 Bucket
+S3_BUCKET_NAME= #insert your s3 bucket name
+S3_BUCKET_REGION= #insert your s3 bucket region
+AWS_SECRET_KEY= #insert your aws secret key
+AWS_ACCESS_KEY= #insert your aws access key
+
+
+#OPENAI
+OPENAI_API_KEY= #insert your OpenAI API Key
+
+#PLANTNET
+PLANTNET_API_KEY= #insert your planetnet API key
+```
+
+Now, you should be able to run Floravert locally and explore its features.
