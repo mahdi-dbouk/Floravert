@@ -79,47 +79,48 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 
 ```JSON
 {
-"query": {
-"project": "best",
-"images": [
-"buffer_code_image_1",
-"buffer_code_image_2"
-],
-"organs": [
-"flower",
-"leaf"
-]
-},
-"language": "en",
-"preferedReferential": "useful",
-"results": [
-{
-"score": 0.9952006530761719,
-"species": {
-	"scientificNameWithoutAuthor": "Hibiscus rosa-sinensis",
-	"scientificNameAuthorship": "L.",
-	"genus": {
-		"scientificNameWithoutAuthor": "Hibiscus",
-		"scientificNameAuthorship": "L."
-	},
-	"family": {
-		"scientificNameWithoutAuthor": "Malvaceae",
-		"scientificNameAuthorship": "Juss."
-	},
-	"commonNames": [
-		"Chinese hibiscus",
-		"Hawaiian hibiscus",
-		"Hibiscus"
-	]
-}
-}
-],
-"remainingIdentificationRequests": 1228
+  "query": {
+    "project": "best",
+    "images": [
+      "buffer_code_image_1",
+      "buffer_code_image_2"
+    ],
+    "organs": [
+      "flower",
+      "leaf"
+    ]
+  },
+  "language": "en",
+  "preferedReferential": "useful",
+  "results": [
+    {
+      "score": 0.9952006530761719,
+      "species": {
+        "scientificNameWithoutAuthor": "Hibiscus rosa-sinensis",
+        "scientificNameAuthorship": "L.",
+        "genus": {
+          "scientificNameWithoutAuthor": "Hibiscus",
+          "scientificNameAuthorship": "L."
+        },
+        "family": {
+          "scientificNameWithoutAuthor": "Malvaceae",
+          "scientificNameAuthorship": "Juss."
+        },
+        "commonNames": [
+          "Chinese hibiscus",
+          "Hawaiian hibiscus",
+          "Hibiscus"
+        ]
+      }
+    }
+  ],
+  "remainingIdentificationRequests": 1228
 }
 ```
 > We can see that we have plenty of details already, and most importantly we notice that the result of our scan is a results array, each having a score. We'll discuss the score later on, but for now, let's discuss which pieces of the results are required for our use case.
 
 ```JSON
+
 "species": {
 	"scientificNameWithoutAuthor": "Hibiscus rosa-sinensis", //here
 	"scientificNameAuthorship": "L.",
@@ -137,6 +138,7 @@ Streamlining the plant discovery journey, from identification to purchase, for a
 		"Hibiscus"
 	]
 }
+
 
 ```
 > We are only interested in the common name of the plant as well as its scientific name, which are going to be sent in a prompt to one of OpenAI's Models in order to generate the required description. But before we skip to the next step, let's discuss the score. The score here represents the confidence level assigned to a given prediction, think of it as the degree to which the model is confident that its response is correct, and from that we deduce that a score closer to 1 implies a more reliable result (but take that with a grain of salt). It is also worthy to note that PlantNet's API returns the results in decreasing order and thus the best match is always the first element in the array and based on that Floravert takes only the first element in the array to feed to OpenAI's Model.
