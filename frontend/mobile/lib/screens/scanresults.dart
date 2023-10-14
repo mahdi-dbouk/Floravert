@@ -222,11 +222,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.food_bank_rounded,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -235,7 +235,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Edibility",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -265,11 +265,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.emergency_outlined,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -278,7 +278,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Toxicity",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -314,11 +314,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.forest,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -327,7 +327,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Habitat",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -357,11 +357,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.emoji_food_beverage_rounded,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -370,7 +370,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Use",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -406,11 +406,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.severe_cold_rounded,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -419,7 +419,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Seasonality",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -451,11 +451,11 @@ class _ScannedResultState extends State<ScannedResult> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.warning_amber_rounded,
                                         size: 36,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 30,
                                       ),
                                       SizedBox(
@@ -464,7 +464,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Status",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -503,10 +503,10 @@ class _ScannedResultState extends State<ScannedResult> {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: Text.rich(
                             TextSpan(
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                               text: (widget.isAScan)
                                   ? scannedPlantModel.result.description
                                   : widget.scannedPlant!.description!,
@@ -598,7 +598,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           child: Text(
                                             scannedPlantModel
                                                 .result.regions![index],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         )
@@ -606,7 +606,7 @@ class _ScannedResultState extends State<ScannedResult> {
                                           child: Text(
                                             widget
                                                 .scannedPlant!.regions![index],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
@@ -648,7 +648,7 @@ class _ScannedResultState extends State<ScannedResult> {
                           widget.image!,
                           fit: BoxFit.cover,
                         ))),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
